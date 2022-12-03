@@ -1,0 +1,83 @@
+#homeHeader .container{
+    display: flex;
+}
+
+.jumbotron {
+    padding: 1rem 2rem 1rem 2rem;
+    background: #343d46;
+    margin-top: -5px;
+}
+/* nav */
+.header{
+    height: 25px;
+    background-color: #343d46;
+    display: flex;
+    justify-content: space-between;
+}
+.logo{
+    vertical-align: middle;
+}
+nav{
+    position: relative;
+    left: 0;
+    display: flex;
+    width: auto;
+    height: auto;
+    top: 0;
+}
+nav a{
+    padding-right: 10px;
+    color: rgb(160, 155, 3);
+}
+nav a:hover{
+    padding-right: 10px;
+    color: rgb(183, 179, 63);
+    text-decoration: none;
+}
+.header h5{
+    color: rgb(214, 207, 72);
+}
+/* navEND */
+
+/* 搜索框 */
+.box{
+    margin: auto;
+    width: 800px;
+}
+
+.container-1{
+    width: 800px;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+}
+
+.container-1 .icon{
+    position: absolute;
+    top: 50%;
+    margin-left: 17px;
+    margin-top: 17px;
+    z-index: 1;
+    color: #4f5b66;
+}
+
+.container-1 input#search{
+    width: 800px;
+    height: 50px;
+    background: #2b303b;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    color: #63717f;
+    padding-left: 45px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+/* 搜索框END */
+
+@media (min-width: 576px){
+    /* .jumbotron {
+        padding: 1rem 2rem 1rem 2rem;
+    } */
+}
