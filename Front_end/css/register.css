@@ -1,0 +1,84 @@
+.inputDiv {
+    margin: auto;
+    margin-top: 20px;
+    width: 700px;
+    position: relative;
+}
+
+.inputBoxLabel {
+    margin-top: 10px;
+    display: inline;
+    position: absolute;
+    left: 0;
+    font-size: 16pt;
+    font-weight: 400;
+}
+
+.inputBox {
+    width: 580px;
+    height: 50px;
+    color: #63717f;
+    margin-left: 100px;
+    font-size: 22px;
+    padding-left: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    right: 0;
+}
+
+.radioInputDiv {
+    font-size: 16pt;
+    display: inline;
+}
+
+.radioInputLabel {
+    display: inline;
+    position: absolute;
+    left: 0;
+    font-size: 16pt;
+    font-weight: 400;
+}
+
+.radioInputDiv {
+    width: 580px;
+    height: 50px;
+    margin-right: 250px;
+    font-size: 16pt;
+    display: inline;
+    margin-left: -11%;
+}
+
+.necessaryInputLabel {
+    display: inline;
+    color: red;
+}
+
+.submitDiv {
+    margin: auto;
+    margin-right: 215px;
+    width: 580px;
+    position: relative;
+}
+
+.submitButton {
+    position: absolute;
+    right: 0;
+    padding: 10px 20px;
+    border: 3px solid #ddd;
+    color: rgb(255, 255, 255);
+    background-color: #4CAF50;
+    width: 120px;
+    border-radius: 8px;
+}
+
+.cancelButton {
+    position: absolute;
+    left: 0;
+    padding: 10px 20px;
+    border: 3px solid rgb(245, 211, 211);
+    color: rgb(255, 255, 255);
+    background-color:rgb(242, 0, 0);
+    width: 120px;
+    border-radius: 8px;
+}
