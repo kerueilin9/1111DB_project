@@ -2,11 +2,25 @@
     display: flex;
 }
 
+#homeHeader {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    opacity: 0.9;
+}
+
 .jumbotron {
-    padding: 1rem 2rem 1rem 2rem;
+    padding: 5px 1rem 1rem 1rem;
     background: #343d46;
     margin-top: -5px;
+    margin-bottom: 0;
 }
+
+.image img{
+    width: 100%;
+    top: 0;
+}
+
 /* nav */
 .header{
     height: 25px;
