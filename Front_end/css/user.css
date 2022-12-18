@@ -1,0 +1,51 @@
+#userHeader .container{
+    display: flex;
+}
+
+.jumbotron {
+    padding: 1rem 2rem 1rem 2rem;
+    background: #343d46;
+    margin-top: -5px;
+}
+/* nav */
+.header{
+    height: 25px;
+    background-color: #343d46;
+    display: flex;
+    justify-content: space-between;
+}
+.logo{
+    vertical-align: middle;
+}
+.label{
+    margin-top: 8px;
+    margin-left: 8px;
+    color: #879bae;
+}
+.header h5{
+    color: rgb(214, 207, 72);
+}
+/* navEND */
+/* 使用者資訊 */
+.box {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    margin-top: 45px;
+    border-style: solid;
+}
+.logout {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2mm 230px;
+}
+/* 使用者資訊END */
+/* 搜索框 */
+
+/* 搜索框END */
+
+@media (min-width: 576px){
+    /* .jumbotron {
+        padding: 1rem 2rem 1rem 2rem;
+    } */
+}
