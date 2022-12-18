@@ -11,9 +11,8 @@
 }
 
 .jumbotron {
-    padding: 5px 1rem 1rem 1rem;
+    padding: 10px 1rem 1rem 1rem;
     background: #343d46;
-    margin-top: -5px;
     margin-bottom: 0;
 }
 
@@ -96,12 +95,14 @@ nav a:hover{
 }
 /* 搜索框END */
 
-.iconCart{
+.userImform{
     justify-content: right;
-    margin-right: 10px;
+    margin: auto 50px;
 }
-.iconCart img{
-    width: 200px; 
+
+.userImform div{
+    font-size: 30px;
+    color: #fff;
 }
 
 @media (min-width: 576px){
