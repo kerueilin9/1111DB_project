@@ -1,4 +1,4 @@
-.registerHeader{
+.registerHeader {
     margin-top: 50px;
 }
 
@@ -31,11 +31,6 @@
     right: 0;
 }
 
-.radioInputDiv {
-    font-size: 16pt;
-    display: inline;
-}
-
 .radioInputLabel {
     display: inline;
     position: absolute;
@@ -51,6 +46,10 @@
     font-size: 16pt;
     display: inline;
     margin-left: -11%;
+}
+
+.radioInput {
+    margin-left: 5px;
 }
 
 .necessaryInputLabel {
@@ -82,7 +81,7 @@
     padding: 10px 20px;
     border: 3px solid rgb(245, 211, 211);
     color: rgb(255, 255, 255);
-    background-color:rgb(242, 0, 0);
+    background-color: rgb(242, 0, 0);
     width: 120px;
     border-radius: 8px;
 }
