@@ -6,22 +6,12 @@
     display: inline;
 }
 
+.iconHome {
+    display: inline;
+}
+
 .iconHome img{
     width: 100px; 
-}
-
-.container {  
-    display: flex;
-    justify-content: space-between;
-    max-width: 100%;
-    padding: 10px;
-}
-
-.userImform{
-    justify-content: right;
-    margin: auto 50px;
-    font-size: 30px;
-    color: #fff;
 }
 
 .registerForm {
@@ -31,10 +21,17 @@
     margin-top: 30px;
 }
 
+.container {  
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    padding: 10px;
+}
+
 .containerOrder {
     max-width: 1200px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 70px;
 }
 
 .productHeader {
@@ -58,8 +55,11 @@
     margin-bottom: 15px;
 }
 
-.detailInputBox {
-
+.userImform{
+    justify-content: right;
+    margin: auto 50px;
+    font-size: 30px;
+    color: #fff;
 }
 
 textarea {

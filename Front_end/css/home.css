@@ -1,6 +1,7 @@
 #homeHeader .container1{
     display: flex;
-    height: 100px;
+    height: 120px;
+    padding: 10px;
 }
 
 #homeHeader {
@@ -11,25 +12,24 @@
 }
 
 .jumbotron {
-    padding: 5px 1rem 1rem 1rem;
+    padding: 5px 1rem 0rem 1rem;
     background: #343d46;
     margin-top: -5px;
-    margin-bottom: 0;
 }
 
-.image img{
+.image img {
     width: 100%;
     top: 0;
 }
 
 /* nav */
-.header{
+.header {
     height: 25px;
     background-color: #343d46;
     display: flex;
     justify-content: end;
 }
-nav{
+nav {
     position: relative;
     left: 0;
     display: flex;
@@ -37,42 +37,42 @@ nav{
     height: auto;
     top: 0;
 }
-nav a{
+nav a {
     padding-right: 10px;
     color: rgb(160, 155, 3);
 }
-nav a:hover{
+nav a:hover {
     padding-right: 10px;
     color: rgb(183, 179, 63);
     text-decoration: none;
 }
-.header h5{
+.header h5 {
     color: rgb(214, 207, 72);
 }
 /* navEND */
 
-.iconHome{
+.iconHome {
     justify-content:left;
     margin-left: 50px;
 }
-.iconHome img{
+.iconHome img {
     width: 200px; 
 }
 
 /* 搜索框 */
-.box{
+.box {
     margin: auto;
     width: 800px;
 }
 
-.container-1{
+.container-1 {
     width: 800px;
     vertical-align: middle;
     white-space: nowrap;
     position: relative;
 }
 
-.container-1 .icon{
+.container-1 .icon {
     position: absolute;
     top: 50%;
     margin-left: 17px;
@@ -81,7 +81,7 @@ nav a:hover{
     color: #4f5b66;
 }
 
-.container-1 input#search{
+.container-1 input#search {
     width: 800px;
     height: 50px;
     background: #2b303b;
@@ -96,11 +96,11 @@ nav a:hover{
 }
 /* 搜索框END */
 
-.iconCart{
+.iconCart {
     justify-content: right;
     margin-right: 10px;
 }
-.iconCart img{
+.iconCart img {
     width: 200px; 
 }
 
