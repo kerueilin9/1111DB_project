@@ -119,6 +119,7 @@
     crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <!-- Vue.js -->
+<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue@next"></script>
 <script>
     Vue.createApp({
@@ -150,7 +151,20 @@
                     return
                 }
                 else {
-                    // 傳資料到後端
+                    axios({
+                        method: 'post',
+                        url: '',
+                        data: {
+                            Name: this.name,
+                            Account: this.account,
+                            Password: this.password,
+                            ConfirmPassword: this.confirmPassword,
+                            Email: this.email,
+                            Phone: this.phone,
+                            Address: this.address,
+                            Gender: this.gender
+                        }
+                    });
                     window.open("index.html", "_self")
                     alert('註冊成功')
                 }
