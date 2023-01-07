@@ -93,7 +93,7 @@
                         </fieldset>
                     </div>
                     <div class="submitDiv">
-                        <button class="cancelButton" type="button">取消註冊</button>
+                        <button class="cancelButton" type="button" @click="onCancel()">取消註冊</button>
                         <input class="submitButton" type="submit" value="註冊" @click="onSubmit()">
                     </div>
                 </form>
@@ -118,7 +118,7 @@
     integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
     crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="./js/register.js" type="module"></script>
+<!-- Vue.js -->
 <script src="https://unpkg.com/vue@next"></script>
 <script>
     Vue.createApp({
@@ -135,6 +135,9 @@
             };
         },
         methods: {
+            onCancel() {
+                window.open("index.html", "_self")
+            },
             onSubmit() {
                 if (this.name == '' || this.account == '' || this.password == '' || this.confirmPassword == '' || this.email == '' || this.phone == '' || this.address == '') {
                     alert('有些欄位為空')
@@ -147,7 +150,9 @@
                     return
                 }
                 else {
-                    alert('Success')
+                    // 傳資料到後端
+                    window.open("index.html", "_self")
+                    alert('註冊成功')
                 }
             }
         },
