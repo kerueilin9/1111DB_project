@@ -18,137 +18,136 @@
 </head>
 
 <body>
-    <div id="app">
-        <header id="homeHeader" class="jumbotron">
-            <div class="header">
-                <nav>
-                    <a href="#" @click="onRegister()">註冊</a>
-                    <a data-toggle="modal" href="#signInModal">登入</a>
-                </nav>
-            </div>
-            <div class="container1">
-                <div class="iconHome">
-                    <img src="image.png" alt="icon">
-                </div>
-                <div class="box">
-                    <div class="container-1">
-                        <span class="icon"><i class="fa fa-search"></i></span>
-                        <input type="search" id="search" placeholder="Search..." />
-                    </div>
-                </div>
-                <span class="iconCart"><img src="image.png" alt="icon"></span>
-            </div>
-        </header>
-
-        <div class="image">
-            <img src="image.jpg" alt="Italian Trulli">
+    <header id="homeHeader" class="jumbotron">
+        <div class="header">
+            <nav>
+                <a href="#">註冊</a>
+                <a data-toggle="modal" href="#signInModal">登入</a>
+            </nav>
         </div>
-
-        <!-- section -->
-        <section class="py-4">
-            <div class="container">
-                <div class="text-center mb-4">
-                    <h2 class="text-center">Product List</h2>
-                    <hr>
-                </div>
-                <!-- productList -->
-                <div id="productList" class="row">
-                    <div class="col-md-4 col-6">
-                        <div class="card my-3">
-                            <img class="card-img-top" src="P_20220810_235241.jpg" alt="">
-                            <div class="card-body">
-                                <h4 class="card-title mb-0">商品</h4>
-                                <div class="category-list my-2">
-                                    <span class="badge badge-${tag.color}">
-                                        123456
-                                    </span>
-                                </div>
-                                <p class="price">$
-                                    <span class="text-danger">300</span>
-                                    <s>300</s> NTD
-                                </p>
-                            </div>
-                            <div class="card-footer">
-                                Updated at 2021.11.04 <i class="far fa-calendar-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-6">
-                        <div class="card my-3">
-                            <img class="card-img-top" src="P_20220810_235241.jpg" alt="">
-                            <div class="card-body">
-                                <h4 class="card-title mb-0">商品</h4>
-                                <div class="category-list my-2">
-                                    <span class="badge badge-${tag.color}">
-                                        123456
-                                    </span>
-                                </div>
-                                <p class="price">$
-                                    <span class="text-danger">300</span>
-                                    <s>300</s> NTD
-                                </p>
-                            </div>
-                            <div class="card-footer">
-                                Updated at 2021.11.04 <i class="far fa-calendar-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-6">
-                        <div class="card my-3">
-                            <img class="card-img-top" src="P_20220810_235241.jpg" alt="">
-                            <div class="card-body">
-                                <h4 class="card-title mb-0">商品</h4>
-                                <div class="category-list my-2">
-                                    <span class="badge badge-${tag.color}">
-                                        123456
-                                    </span>
-                                </div>
-                                <p class="price">$
-                                    <span class="text-danger">300</span>
-                                    <s>300</s> NTD
-                                </p>
-                            </div>
-                            <div class="card-footer">
-                                Updated at 2021.11.04 <i class="far fa-calendar-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- productList end -->
+        <div class="container1">
+            <div class="iconHome">
+                <img src="image.png" alt="icon">
             </div>
-        </section>
-        <!-- section end -->
-
-        <!-- signInModal -->
-        <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <form id="signInForm" class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">登入</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="signInEmail">帳號</label>
-                            <input id="signInEmail" type="text" class="form-control" placeholder="輸入帳號" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="signInPassword">密碼</label>
-                            <input id="signInPassword" type="password" class="form-control" placeholder="輸入密碼" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-                        <button type="submit" class="btn btn-primary">確認</button>
-                    </div>
-                </form>
+            <div class="box">
+                <div class="container-1">
+                    <span class="icon"><i class="fa fa-search"></i></span>
+                    <input type="search" id="search" placeholder="Search..." />
+                </div>
             </div>
+            <span class="iconCart"><img src="image.png" alt="icon"></span>
         </div>
+    </header>
 
+    <div class="image">
+        <img src="image.jpg" alt="Italian Trulli">
     </div>
+
+    <!-- section -->
+    <section class="py-4">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="text-center">Product List</h2>
+                <hr>
+            </div>
+            <!-- productList -->
+            <div id="productList" class="row">
+                <div class="col-md-4 col-6">
+                    <div class="card my-3">
+                        <img class="card-img-top" src="P_20220810_235241.jpg" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title mb-0">商品</h4>
+                            <div class="category-list my-2">
+                                <span class="badge badge-${tag.color}">
+                                    123456
+                                </span>
+                            </div>
+                            <p class="price">$
+                                <span class="text-danger">300</span>
+                                <s>300</s> NTD
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            Updated at 2021.11.04 <i class="far fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="card my-3">
+                        <img class="card-img-top" src="P_20220810_235241.jpg" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title mb-0">商品</h4>
+                            <div class="category-list my-2">
+                                <span class="badge badge-${tag.color}">
+                                    123456
+                                </span>
+                            </div>
+                            <p class="price">$
+                                <span class="text-danger">300</span>
+                                <s>300</s> NTD
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            Updated at 2021.11.04 <i class="far fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="card my-3">
+                        <img class="card-img-top" src="P_20220810_235241.jpg" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title mb-0">商品</h4>
+                            <div class="category-list my-2">
+                                <span class="badge badge-${tag.color}">
+                                    123456
+                                </span>
+                            </div>
+                            <p class="price">$
+                                <span class="text-danger">300</span>
+                                <s>300</s> NTD
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            Updated at 2021.11.04 <i class="far fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- productList end -->
+        </div>
+    </section>
+    <!-- section end -->
+
+    <!-- signInModal -->
+    <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form id="signInForm" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sign In</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="signInEmail">Sign in email</label>
+                        <input id="signInEmail" type="email" class="form-control" placeholder="email..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signInPassword">Sign in password</label>
+                        <input id="signInPassword" type="password" class="form-control" minlength="6"
+                            placeholder="password..." required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 </body>
 <script>
 

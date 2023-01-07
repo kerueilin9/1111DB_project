@@ -98,9 +98,6 @@ nav a:hover{
 .userImform{
     justify-content: right;
     margin: auto 50px;
-}
-
-.userImform div{
     font-size: 30px;
     color: #fff;
 }

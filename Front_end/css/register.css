@@ -1,5 +1,16 @@
 .registerHeader {
-    margin-top: 50px;
+    margin-top: 70px;
+}
+
+.headerContainer {  
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    padding: 10px;
+}
+
+.iconHome img{
+    width: 100px; 
 }
 
 .inputDiv {
