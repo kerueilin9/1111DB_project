@@ -190,12 +190,7 @@
                 window.open("order.html", "_self")
             },
             onUserProfile() {
-                axios.get('http://localhost:5000/UID')
-                    .then((response) => {
-                        this.accountStatus = response.data.UID;
-                        console.log('onProfile GET UID = ' + response.data.UID)
-                    })
-                    .catch((error) => console.log(error))
+                window.open("user.html", "_self")
             },
             onSignOut() {
                 axios({
