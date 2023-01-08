@@ -51,7 +51,7 @@ def signIn():
 
     try:
         data = request.get_json()
-        sql = ("SELECT Account, Password from user WHERE (Account = %s)")
+        sql = ("SELECT Account, Password FROM user WHERE (Account = %s)")
         val = (data['Account'])
         cursor.execute(sql, val)
         user = cursor.fetchall()
@@ -59,29 +59,29 @@ def signIn():
             print('This account is not registerd.')
             return jsonify({
                 'status': 'success',
-                'userStatus': '帳號未被註冊'
+                'values': '帳號未被註冊'
             })
         elif (data['Password'] != user[0]['Password']):
             print('Wrong password.')
             return jsonify({
                 'status': 'success',
-                'userStatus': '錯誤的密碼'
+                'values': '錯誤的密碼'
             })
         elif (data['Password'] == user[0]['Password']):
             print('Success.')
-            cursor.execute("SELECT UID from user WHERE (Account = %s)", val)
+            cursor.execute("SELECT UID FROM user WHERE (Account = %s)", val)
             global UID
             UID = cursor.fetchall()[0]['UID']
-            print('SignIn UID' + str(UID))
+            print('SignIn UID = ' + str(UID))
             return jsonify({
                 'status': 'success',
-                'userStatus': '登入成功',
+                'values': '登入成功',
                 'UID': UID
             })
         else:
             return jsonify({
                 'status': 'success',
-                'userStatus': '-1'
+                'values': '-1'
             })
     # except Exception as e:
     #     print(e)
@@ -91,58 +91,77 @@ def signIn():
 
 # 查看會員
 @app.route('/userList', methods=['GET'])
-def home():
+def userList():
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
     try:
         cursor.execute("SELECT * FROM user")
         userslist = cursor.fetchall()
-        print(userslist)
         return jsonify({
             'status': 'success',
-            'members': userslist
+            'values': userslist
         })
-    except Exception as e:
-        print(e)
+    # except Exception as e:
+    #     print(e)
     finally:
         cursor.close() 
         conn.close()
 
 #取得使用者資料
 @app.route('/user', methods=['GET'])
-def userget():
+def getUser():
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
 
     try:
-        cursor.execute("SELECT * from user where UID = 1")
+        global UID
+        cursor.execute("SELECT * FROM user WHERE UID = %s", UID)
         user = cursor.fetchall()
         return jsonify({
             'status': 'success',
-            'members': user
+            'values': user
         })
-    except Exception as e:
-        print(e)
+    # except Exception as e:
+    #     print(e)
     finally:
         cursor.close() 
         conn.close()
  
         
-# 產品
+# 主頁產品
+@app.route('/getAllProduct', methods=['GET'])
+def getAllProduct():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+    try:
+        cursor.execute("SELECT * FROM product")
+        productList = cursor.fetchall()
+        return jsonify({
+            'status' : 'success',
+            'values' : productList
+        })
+    # except Exception as e:
+    #     print(e)
+    finally:
+        cursor.close()
+        conn.close()
+# 點擊產品
 @app.route('/getProduct', methods=['GET'])
 def product():
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
 
     try:
-        cursor.execute("SELECT * from product")
-        productList = cursor.fetchall()
+        global PID
+        cursor.execute("SELECT * FROM product WHERE PID = %s", PID)
+        product = cursor.fetchall()
         return jsonify({
             'status' : 'success',
-            'members' : productList
+            'values' : product
         })
-    except Exception as e:
-        print(e)
+    # except Exception as e:
+    #     print(e)
     finally:
         cursor.close()
         conn.close()
@@ -150,25 +169,22 @@ def product():
 # 取得UID
 @app.route('/UID', methods=['GET'])
 def getUID():
-    try:
-        return jsonify({
-            'status': 'success',
-            'UID': UID
-        })
-    except Exception as e:
-        print(e)
-    finally:
-        print('GET UID = ' + str(UID))
+    print('GET UID = ' + str(UID))
+    return jsonify({
+        'status': 'success',
+        'UID': UID
+    })
+
 
 # 登出
 @app.route('/signOut', methods=['POST'])
 def signOut():
     global UID
     UID = 0
-    print('SignOut UID' + str(UID))
+    print('SignOut UID = ' + str(UID))
     return jsonify({
         'status': 'success',
-        'userStatus': '登出成功',
+        'values': '登出成功',
         'UID': UID
     })
 

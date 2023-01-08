@@ -35,7 +35,7 @@
                 <div class="text-center mb-4 productHeader">
                     <h2 id="productName">商品名稱</h2>
                     <hr>
-                    <img src="P_20220810_235241.jpg" id="productImage" width="400" height="400" alt="">
+                    <img src='P_20220810_235241.jpg' id="productImage" width="400" height="400" alt="">
                     <br>
                     <br>
                     數量&emsp;
@@ -96,14 +96,12 @@
     Vue.createApp({
         data: function () {
             return {
-                name: '',
-                account: '',
-                password: '',
-                confirmPassword: '',
-                email: '',
-                phone: '',
-                address: '',
-                gender: 'none'
+                Image: '',
+                Type:'',
+                Quantity: '',
+                Price: '',
+                Describe: '',
+                products: []
             };
         },
         methods: {

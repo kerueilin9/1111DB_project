@@ -173,9 +173,9 @@
                         Password: this.signInPassword
                     }
                 }).then((response) => {
-                    var signInResult = response.data.userStatus
+                    var signInResult = response.data.values
                     if (signInResult != '登入成功')
-                        alert(response.data.userStatus)
+                        alert(response.data.values)
                     else {
                         alert('登入成功')
                         this.accountStatus = response.data.UID;
@@ -188,6 +188,8 @@
             },
             onOrder() {
                 window.open("order.html", "_self")
+                // 傳PID到後端
+                
             },
             onUserProfile() {
                 window.open("user.html", "_self")
@@ -200,9 +202,9 @@
                         accountStatus: ''
                     }
                 }).then((response) => {
-                    var signOutResult = response.data.userStatus
+                    var signOutResult = response.data.values
                     if (signOutResult != '登出成功')
-                        alert(response.data.userStatus)
+                        alert(response.data.values)
                     else {
                         alert('登出成功')
                         this.accountStatus = response.data.UID;
@@ -214,11 +216,11 @@
                 event.preventDefault(); // 用來查看console.log
             },
             onCreate() {
-                axios.get('http://localhost:5000/getProduct')
+                axios.get('http://localhost:5000/getAllProduct')
                     .then((response) => {
-                        this.products = response.data.members
+                        this.products = response.data.values
                         this.products.forEach(element => {
-                            element.realPrice = element.Price * (element.Discount / 100);
+                            element.realPrice = element.Price * element.Discount;
                         });
                         this.productsKey++
                         console.log(this.products)
