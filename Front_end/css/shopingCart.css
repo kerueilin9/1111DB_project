@@ -30,8 +30,14 @@
 
 .containerOrder {
     max-width: 1500px;
+    display: flex;
+    flex-direction: column;
     margin: auto;
     margin-top: 70px;
+}
+
+.containerOrder h2 {
+    width: 800px;
 }
 
 .productHeader {
@@ -76,6 +82,23 @@
     padding: 10px;
 }
 
+.deliveryDetail {
+    padding: 20px;
+    background-color: beige;
+    margin-bottom: 20px;
+}
+
+.ImformationBox input {
+    display: flex;
+    width: 90%;
+}
+
+.totalFee {
+    text-align: right;
+    font-size: 40px;
+    margin-right: 20px;
+}
+
 .userImform{
     justify-content: right;
     margin: auto 50px;
@@ -91,6 +114,7 @@ img {
     width: 100px;
 }
 
+/* #region 數量*/
 .qty {
     width: 40px;
     height: 35px;
@@ -112,4 +136,17 @@ input.qtyminus {
     height: 35px;
     border: 1px solid #aaa;
     background: #f8f8f8;
+}
+/* #endregion 數量*/
+
+.submitButton {
+    padding: 10px 20px;
+    font-size: 30px;
+    width: fit-content;
+    display: flex;
+    align-self: flex-end;
+    border: 3px solid #ddd;
+    color: rgb(255, 255, 255);
+    background-color: #f7a649;
+    border-radius: 8px;
 }

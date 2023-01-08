@@ -72,9 +72,18 @@
                         <div class="cartColumn">總額</div>
                     </div>
                 </div>
-                <div class="shopingCartItems">
-
+                <div class="deliveryDetail">
+                    <div class="ImformationBox">
+                        <div class="cartColumn">寄送地址</div>
+                    </div>
+                    <div class="ImformationBox">
+                        <input type="text" value="" v-model="address" ref="phoneInput" required >
+                    </div>
+                    <div class="totalFee">
+                        總金額：
+                    </div>
                 </div>
+                <input class="submitButton" type="submit" value="確認下單" @click="onSubmit()">
             </div>
 
     </div>
