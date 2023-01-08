@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `product`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `product` (
   `PID` int NOT NULL AUTO_INCREMENT,
-  `Image` blob,
+  `Image` varchar(256),
   `Manager_ID` int NOT NULL,
   `Type` varchar(16) NOT NULL,
   `Describe` varchar(256) NOT NULL,

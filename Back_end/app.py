@@ -60,7 +60,7 @@ def product():
     cursor = conn.cursor(pymysql.cursors.DictCursor)
 
     try:
-        cursor.execute("SELECT * from product")
+        cursor.execute("SELECT * from `product`")
         productList = cursor.fetchall()
         return jsonify({
             'status' : 'success',
