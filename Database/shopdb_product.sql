@@ -44,7 +44,9 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,_binary 'image',1,'block','This is a square',5,1200,1.00,'0000-00-00 00:00:00');
+INSERT INTO `product` VALUES 
+(1,_binary 'image',1,'block','This is a square',5,1200,1.00,'2023-12-12 12:59:23'), 
+(2,_binary 'image',1,'red','This is a book',9,300,100.00,'0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
