@@ -4,7 +4,7 @@ from flaskext.mysql import MySQL
 import pymysql
 
 DEBUG = True
-UID = ''
+UID = 0
 # instantiate the app
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -52,23 +52,23 @@ def signIn():
             print('This account is not registerd.')
             return jsonify({
                 'status': 'success',
-                'userStatus': 'This account is not registerd.'
+                'userStatus': '帳號未被註冊'
             })
         elif (data['Password'] != user[0]['Password']):
             print('Wrong password.')
             return jsonify({
                 'status': 'success',
-                'userStatus': 'Wrong password.'
+                'userStatus': '錯誤的密碼'
             })
         elif (data['Password'] == user[0]['Password']):
             print('Success.')
-
             cursor.execute("SELECT UID from user WHERE (Account = %s)", val)
-            UID = cursor.fetchall()
-            print(UID[0]['UID'])
+            UID = cursor.fetchall()[0]['UID']
+            print('SignIn UID' + str(UID))
             return jsonify({
                 'status': 'success',
-                'userStatus': 'Success.'
+                'userStatus': '登入成功',
+                'UID': UID
             })
         else:
             return jsonify({
@@ -135,6 +135,19 @@ def product():
     finally:
         cursor.close()
         conn.close()
+
+# 取得UID
+@app.route('/UID', methods=['GET'])
+def getUID():
+    try:
+        return jsonify({
+            'status': 'success',
+            'UID': UID
+        })
+    except Exception as e:
+        print(e)
+    finally:
+        print('GET UID = ' + str(UID))
 
 if __name__ == '__main__':
     app.run()
