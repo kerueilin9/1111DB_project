@@ -30,6 +30,12 @@ def signUp():
         val = (data['Name'], data['Email'], data['Account'], data['Password'], 'member', data['Phone'], data['Gender'])
         cursor.execute(sql, val)
         conn.commit()
+        cursor.execute("SELECT UID FROM user WHERE Account = %s", data['Account'])
+        userID = cursor.fetchall()
+        sql = ("INSERT INTO member (Member_ID, Address) VALUES (%s, %s)")
+        val = (userID, data['Address'])
+        cursor.execute(sql, val)
+        conn.commit()
         return jsonify({
             'status': 'success'
         })
@@ -101,6 +107,7 @@ def home():
     finally:
         cursor.close() 
         conn.close()
+
 @app.route('/user', methods=['GET'])
 def userget():
     conn = mysql.connect()
@@ -118,7 +125,9 @@ def userget():
     finally:
         cursor.close() 
         conn.close()
-
+ 
+        
+# 產品
 @app.route('/getProduct', methods=['GET'])
 def product():
     conn = mysql.connect()
