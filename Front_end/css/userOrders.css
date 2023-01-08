@@ -88,11 +88,6 @@
     margin-bottom: 20px;
 }
 
-.InformationBox input {
-    display: flex;
-    width: 90%;
-}
-
 .totalFee {
     text-align: right;
     font-size: 40px;
@@ -141,10 +136,10 @@ input.qtyminus {
 
 .submitButton {
     padding: 10px 20px;
-    font-size: 30px;
-    width: fit-content;
+    font-size: 20px;
+    width: min-content;
+    text-align: center;
     display: flex;
-    align-self: flex-end;
     border: 3px solid #ddd;
     color: rgb(255, 255, 255);
     background-color: #f7a649;
