@@ -159,5 +159,17 @@ def getUID():
     finally:
         print('GET UID = ' + str(UID))
 
+# 登出
+@app.route('/signOut', methods=['POST'])
+def signOut():
+    global UID
+    UID = 0
+    print('SignOut UID' + str(UID))
+    return jsonify({
+        'status': 'success',
+        'userStatus': '登出成功',
+        'UID': UID
+    })
+
 if __name__ == '__main__':
     app.run()

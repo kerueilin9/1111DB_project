@@ -198,7 +198,25 @@
                     .catch((error) => console.log(error))
             },
             onSignOut() {
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:5000/signOut',
+                    data: {
+                        accountStatus: ''
+                    }
+                }).then((response) => {
+                    var signOutResult = response.data.userStatus
+                    if (signOutResult != '登出成功')
+                        alert(response.data.userStatus)
+                    else {
+                        alert('登出成功')
+                        this.accountStatus = response.data.UID;
+                        console.log('status ' + this.accountStatus)
+                        window.open("index.html", "_self")
+                    }
 
+                })
+                event.preventDefault(); // 用來查看console.log
             },
             onCreate() {
                 axios.get('http://localhost:5000/getProduct')
