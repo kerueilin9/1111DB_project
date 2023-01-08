@@ -63,6 +63,7 @@ def signIn():
         elif (data['Password'] == user[0]['Password']):
             print('Success.')
             cursor.execute("SELECT UID from user WHERE (Account = %s)", val)
+            global UID
             UID = cursor.fetchall()[0]['UID']
             print('SignIn UID' + str(UID))
             return jsonify({

@@ -60,7 +60,7 @@
                 </div>
                 <!-- productList -->
                 <div id="productList" class="row">
-                    <div v-for="product in products" :key="productsKey">    
+                    <div v-for="product in products" :key="productsKey">
                         <div class="col-md-4 col-6" @click="onOrder()" id="product.PID">
                             <div class="card my-3">
                                 <img class="card-img-top" src="P_20220810_235241.jpg" alt="">
@@ -72,12 +72,13 @@
                                         </span>
                                     </div>
                                     <p class="price">
-                                        <div v-if="product.Price !== product.realPrice">
-                                            $<span class="text-danger">{{product.realPrice}}</span><s>{{product.Price}}</s> NTD
-                                        </div>
-                                        <div v-else>
-                                            ${{product.Price}} NTD
-                                        </div>
+                                    <div v-if="product.Price !== product.realPrice">
+                                        $<span class="text-danger">{{product.realPrice}}</span><s>{{product.Price}}</s>
+                                        NTD
+                                    </div>
+                                    <div v-else>
+                                        ${{product.Price}} NTD
+                                    </div>
                                     </p>
                                 </div>
                                 <div class="card-footer">
@@ -185,10 +186,17 @@
             onOrder() {
                 window.open("order.html", "_self")
             },
+            onUserProfile() {
+                axios.get('http://localhost:5000/UID')
+                    .then((response) => {
+                        this.accountStatus = response.data.UID;
+                        console.log('onProfile GET UID = ' + response.data.UID)
+                    })
+                    .catch((error) => console.log(error))
+            },
             onCreate() {
                 axios.get('http://localhost:5000/getProduct')
-                    .then((response) => 
-                    {
+                    .then((response) => {
                         this.products = response.data.members
                         this.products.forEach(element => {
                             element.realPrice = element.Price * (element.Discount / 100);
