@@ -183,10 +183,13 @@
                 window.open("register.html", "_self")
             },
             onSignIn() {
+                if (this.signInAccount == '' || this.signInPassword == '') {
+                    alert('帳號或密碼不得為空值')
+                    return
+                }
                 axios({
                     method: 'post',
                     url: 'http://localhost:5000/SignIn',
-                    //API要求的資料
                     data: {
                         Account: this.signInAccount,
                         Password: this.signInPassword
@@ -195,6 +198,7 @@
                     alert(response.data.status)
                     console.log(response)
                 })
+                event.preventDefault(); // 用來查看console.log
             },
             onOrder() {
                 window.open("order.html", "_self")
