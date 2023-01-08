@@ -64,9 +64,13 @@
                                             {{product.Describe}}
                                         </span>
                                     </div>
-                                    <p class="price">$
-                                        <span class="text-danger">{{product.realPrice}}</span>
-                                        <s>{{product.Price}}</s> NTD
+                                    <p class="price">
+                                        <div v-if="product.Price !== product.realPrice">
+                                            $<span class="text-danger">{{product.realPrice}}</span><s>{{product.Price}}</s> NTD
+                                        </div>
+                                        <div v-else>
+                                            ${{product.Price}} NTD
+                                        </div>
                                     </p>
                                 </div>
                                 <div class="card-footer">
@@ -173,7 +177,7 @@
                     {
                         this.products = response.data.members
                         this.products.forEach(element => {
-                            element.realPrice = element.Price * 0.01 * element.Discount;
+                            element.realPrice = element.Price * (element.Discount / 100);
                         });
                         this.productsKey++
                         console.log(this.products)
