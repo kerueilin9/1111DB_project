@@ -26,7 +26,7 @@ CREATE TABLE `product` (
   `PID` int NOT NULL AUTO_INCREMENT,
   `Image` varchar(256),
   `Manager_ID` int NOT NULL,
-  `Type` varchar(16) NOT NULL,
+  `Name` varchar(256) NOT NULL,
   `Describe` varchar(256) NOT NULL,
   `Quantity` int NOT NULL,
   `Price` int NOT NULL,

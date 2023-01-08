@@ -194,6 +194,9 @@
                 }).then((response) => {
                     alert(response)
                 })*/
+                axios.get('http://localhost:5000/userList')
+                    .then((response) => console.log(response))
+                    .catch((error) => console.log(error))
             },
             onOrder() {
                 window.open("order.html", "_self")
