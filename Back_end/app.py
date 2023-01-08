@@ -5,6 +5,7 @@ import pymysql
 
 DEBUG = True
 UID = 0
+PID = 0
 # instantiate the app
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -87,7 +88,6 @@ def signIn():
 def home():
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
-
     try:
         cursor.execute("SELECT * FROM user")
         userslist = cursor.fetchall()

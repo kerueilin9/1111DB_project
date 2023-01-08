@@ -1,4 +1,4 @@
-#homeHeader .container1{
+#homeHeader .container1 {
     display: flex;
     height: 120px;
     padding: 10px;
@@ -9,6 +9,7 @@
     width: 100%;
     top: 0;
     opacity: 0.9;
+    z-index: 99;
 }
 
 .jumbotron {
@@ -29,6 +30,7 @@
     display: flex;
     justify-content: end;
 }
+
 nav {
     position: relative;
     left: 0;
@@ -37,26 +39,31 @@ nav {
     height: auto;
     top: 0;
 }
+
 nav a {
     padding-right: 10px;
     color: rgb(160, 155, 3);
 }
+
 nav a:hover {
     padding-right: 10px;
     color: rgb(183, 179, 63);
     text-decoration: none;
 }
+
 .header h5 {
     color: rgb(214, 207, 72);
 }
+
 /* navEND */
 
 .iconHome {
-    justify-content:left;
+    justify-content: left;
     margin-left: 50px;
 }
+
 .iconHome img {
-    width: 200px; 
+    width: 200px;
 }
 
 /* 搜索框 */
@@ -94,16 +101,16 @@ nav a:hover {
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
+
 /* 搜索框END */
 
 .iconCart {
     justify-content: right;
     margin-right: 10px;
 }
+
 .iconCart img {
-    width: 200px; 
+    width: 200px;
 }
 
-@media (min-width: 576px){
-
-}
+@media (min-width: 576px) {}

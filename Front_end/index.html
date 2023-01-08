@@ -28,6 +28,7 @@
                     </div>
                     <div v-else-if="accountStatus != ''">
                         <a href="#" @click="onUserProfile()">User name</a>
+                        <a href="#" @click="onSignOut()">登出</a>
                     </div>
 
 
@@ -176,6 +177,7 @@
                     if (signInResult != '登入成功')
                         alert(response.data.userStatus)
                     else {
+                        alert('登入成功')
                         this.accountStatus = response.data.UID;
                         console.log('status ' + this.accountStatus)
                     }
@@ -193,6 +195,9 @@
                         console.log('onProfile GET UID = ' + response.data.UID)
                     })
                     .catch((error) => console.log(error))
+            },
+            onSignOut() {
+
             },
             onCreate() {
                 axios.get('http://localhost:5000/getProduct')
