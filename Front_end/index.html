@@ -182,16 +182,17 @@
                 window.open("register.html", "_self")
             },
             onSignIn() {
-                axios({
+                /*axios({
                     method: 'post',
-                    url: 'http://localhost:5000/',
+                    url: 'http://localhost:5000/SignIn',
                     //API要求的資料
                     data: {
-                        Account: 'alysa@gmail.com',
-                        Password: '11223344'
+                        Account: this.signInAccount,
+                        Password: this.signInPassword
                     }
-                })
-                alert("SignIN")
+                }).then((response) => {
+                    alert(response)
+                })*/
             },
             onOrder() {
                 window.open("order.html", "_self")
