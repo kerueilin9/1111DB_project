@@ -29,7 +29,7 @@
 }
 
 .containerOrder {
-    max-width: 1200px;
+    max-width: 1500px;
     margin: auto;
     margin-top: 70px;
 }
@@ -39,20 +39,41 @@
     margin: auto;
 }
 
-.productImformation {
+.shopingCartItems {
     padding: 20px;
     background-color: beige;
+    margin-bottom: 20px;
 }
 
-.ImformationTitle {
+.Title {
     background-color: white;
     font-size: 35px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Lable {
+    display: inline;
+    width: 16%;
+    text-align: center;
+}
+
+.cartColumn {
+    width: 15%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
 }
 
 .ImformationBox {
     font-size: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    background-color: white;
+    justify-content: space-around;
+    padding: 10px;
 }
 
 .userImform{
@@ -64,4 +85,31 @@
 
 textarea {
     width: 1160px;
+}
+
+img {
+    width: 100px;
+}
+
+.qty {
+    width: 40px;
+    height: 35px;
+    text-align: center;
+    border: 0;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+}
+  
+input.qtyplus {
+    width: 25px;
+    height: 35px;
+    border: 1px solid #aaa;
+    background: #f8f8f8;
+}
+
+input.qtyminus {
+    width: 25px;
+    height: 35px;
+    border: 1px solid #aaa;
+    background: #f8f8f8;
 }

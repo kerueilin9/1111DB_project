@@ -30,7 +30,7 @@ def home():
         cursor.execute("SELECT * from user")
         userslist = cursor.fetchall()
         return jsonify({
-            'status': 'success',
+            'status': 'success',    
             'members': userslist
         })
     except Exception as e:
