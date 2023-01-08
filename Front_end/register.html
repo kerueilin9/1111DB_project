@@ -141,6 +141,7 @@
                 window.open("index.html", "_self")
             },
             onSubmit() {
+                this.address = ''
                 if (this.name == '' || this.account == '' || this.password == '' || this.confirmPassword == '' || this.email == '' || this.phone == '' || this.address == '') {
                     alert('有些欄位為空')
                     return

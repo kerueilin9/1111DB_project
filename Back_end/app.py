@@ -108,13 +108,14 @@ def home():
         cursor.close() 
         conn.close()
 
+#取得使用者資料
 @app.route('/user', methods=['GET'])
 def userget():
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
 
     try:
-        cursor.execute("SELECT Phone,Email,Address from user , member where UID = 1 or Member_ID = 1")
+        cursor.execute("SELECT * from user where UID = 1")
         user = cursor.fetchall()
         return jsonify({
             'status': 'success',

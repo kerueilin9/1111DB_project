@@ -13,51 +13,59 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <!-- basic.css -->
+    <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/user.css">
     <!-- <link rel="stylesheet" href="./stylesheets/style.css"> -->
 </head>
 
 <body>
 
-    <div class="header">
-    </div>
-    <header id="userHeader" class="jumbotron">
-        <div class="container">
-            <h1 class="display-6">icon</h1>
-            <div class="container-1">
-                <h2 class="label">label(使用者資訊)
+    <header id="homeHeader" class="jumbotron">
+        <div class="headerContainer">
+            <div class="iconHome">
+                <img src="image.png" alt="icon">
             </div>
-        </div>
         </div>
     </header>
 
     <!-- section -->
-    <section class="py-4" >
+    <section class="py-4">
         <div class="container" id="app">
             <div class="text-center mb-4">
-                <h2 class="text-center">User Information</h2>
+                <h2 class="registerHeader">使用者資訊</h2>
                 <hr>
+                <form class="registerForm">
+                    <div class="inputDiv">
+                        <div class="inputBoxLabel">電子郵件
+                            <p class="necessaryInputLabel">*</p>
+                        </div>
+                        <input class="inputBox" type="email" readonly="readonly" v-model="email" required />
+                    </div>
+                    <div class="inputDiv">
+                        <div class="inputBoxLabel">電話
+                            <p class="necessaryInputLabel">*</p>
+                        </div>
+                        <input class="inputBox" type="text" readonly="readonly" v-model="phone" required />
+                    </div>
+                    <div class="inputDiv">
+                        <div class="inputBoxLabel">地址
+                            <p class="necessaryInputLabel">*</p>
+                        </div>
+                        <input class="inputBox" type="text" readonly="readonly" v-model="address" required />
+                    </div>
+                    <hr>
+                    <div class="submitDiv">
+                        <button class="logoutButton" type="button" @click="toMainPage()">登出</button>
+                        <button class="cancelButton" type="button" @click="toOrder()">訂單資訊</button>
+                        <button class="submitButton" type="button" @click="toProject()">專案資訊</button>
+                    </div>
+                </form>
+
             </div>
-            <div id="userList" class="column">
-                <div class="box">
-                    <input class="text-center" type="text" v-model="email">
-                </div>
-                <div class="box">
-                    <input class="text-center" type="text" v-model="phone">
-                </div>
-                <div class="box">
-                    <input class="text-center" type="text" v-model="address">
-                </div>
-                <hr>
-                <div class="buttonbox">
-                    <button type="text" @click="toOrder()">訂單紀錄</button>
-                    <button type="text" @click="toProject()">專案管理</button>
-                </div>
-            </div>
-            <!-- productList -->
         </div>
     </section>
     <!-- section end -->
+
 
 </body>
 <script>
@@ -82,9 +90,9 @@
     Vue.createApp({
         data: function () {
             return {
-                email: 'Email:',
-                phone: '電話:',
-                address: '地址:',
+                email: '',
+                phone: '',
+                address: '',
             };
         },
         methods: {
@@ -110,6 +118,9 @@
             },
             toProject() {
                 window.open("productItem.html", "_self")
+            },
+            toMainPage() {
+                window.open("index.html","_self")
             }
         },
         mounted: function () {
