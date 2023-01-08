@@ -1,11 +1,3 @@
-.price {
-    display: inline;
-}
-
-.addToCart {
-    display: inline;
-}
-
 .iconHome {
     display: inline;
 }
@@ -14,11 +6,18 @@
     width: 100px; 
 }
 
-.registerForm {
-    font-size: 35px;
-    display: flex;
-    justify-content: space-around;
-    margin-top: 30px;
+.userImform{
+    justify-content: right;
+    font-size: 20px;
+}
+
+.userImform a{
+    color: rgb(160, 155, 3);
+}
+
+.userImform a:hover{
+    color: rgb(214, 207, 72);
+    text-decoration: none;
 }
 
 .container {  
@@ -100,13 +99,6 @@
     text-align: right;
     font-size: 40px;
     margin-right: 20px;
-}
-
-.userImform{
-    justify-content: right;
-    margin: auto 50px;
-    font-size: 30px;
-    color: #fff;
 }
 
 textarea {

@@ -97,9 +97,16 @@ nav a:hover{
 
 .userImform{
     justify-content: right;
-    margin: auto 50px;
-    font-size: 30px;
-    color: #fff;
+    font-size: 20px;
+}
+
+.userImform a{
+    color: rgb(160, 155, 3);
+}
+
+.userImform a:hover{
+    color: rgb(214, 207, 72);
+    text-decoration: none;
 }
 
 @media (min-width: 576px){

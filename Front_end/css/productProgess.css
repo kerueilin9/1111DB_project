@@ -1,22 +1,36 @@
-#userHeader .container{
-    display: flex;
-}
-
-.jumbotron {
-    padding: 1rem 2rem 1rem 2rem;
-    background: #343d46;
-    margin-top: -5px;
-}
-/* nav */
-.header{
-    height: 25px;
-    background-color: #343d46;
+#homeHeader .container {  
     display: flex;
     justify-content: space-between;
+    max-width: 100%;
+    padding: 10px;
 }
-.logo{
-    vertical-align: middle;
+
+.userImform{
+    justify-content: right;
+    font-size: 20px;
 }
+
+.userImform a{
+    color: rgb(160, 155, 3);
+}
+
+.userImform a:hover{
+    color: rgb(214, 207, 72);
+    text-decoration: none;
+}
+
+.iconHome {
+    display: inline;
+}
+
+.iconHome img{
+    width: 100px; 
+}
+
+.containerProgress {
+    margin-top: 70px;
+}
+
 .label {
     margin-top: 8px;
     margin-left: 8px;
