@@ -60,33 +60,33 @@
                 </div>
                 <!-- productList -->
                 <div id="productList" class="row">
-                    <div v-for="product in products" :key="productsKey">
-                        <div class="col-md-4 col-6" @click="onOrder()" id="product.PID">
-                            <div class="card my-3">
-                                <img class="card-img-top" src="P_20220810_235241.jpg" alt="">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-0">{{product.Name}}</h4>
-                                    <div class="category-list my-2">
-                                        <span class="badge badge-${tag.color}">
-                                            {{product.Describe}}
-                                        </span>
-                                    </div>
-                                    <p class="price">
-                                    <div v-if="product.Price !== product.realPrice">
-                                        $<span class="text-danger">{{product.realPrice}}</span><s>{{product.Price}}</s>
-                                        NTD
-                                    </div>
-                                    <div v-else>
-                                        ${{product.Price}} NTD
-                                    </div>
-                                    </p>
+                    <div class="col-md-4 col-6" @click="onOrder()" id="product.PID" v-for="product in products"
+                        :key="productsKey">
+                        <div class="card my-3">
+                            <img class="card-img-top" src="P_20220810_235241.jpg" alt="">
+                            <div class="card-body">
+                                <h4 class="card-title mb-0">{{product.Name}}</h4>
+                                <div class="category-list my-2">
+                                    <span class="badge badge-${tag.color}">
+                                        {{product.Describe}}
+                                    </span>
                                 </div>
-                                <div class="card-footer">
-                                    {{product.Discount_period}} <i class="far fa-calendar-alt"></i>
+                                <p class="price">
+                                <div v-if="product.Price !== product.realPrice">
+                                    $<span class="text-danger">{{product.realPrice}}</span><s>{{product.Price}}</s>
+                                    NTD
                                 </div>
+                                <div v-else>
+                                    ${{product.Price}} NTD
+                                </div>
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                {{product.Discount_period}} <i class="far fa-calendar-alt"></i>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <!-- productList end -->
             </div>
