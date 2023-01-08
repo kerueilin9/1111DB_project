@@ -54,6 +54,24 @@ def home():
         cursor.close() 
         conn.close()
 
+@app.route('/user', methods=['GET'])
+def userget():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+    try:
+        cursor.execute("SELECT * from user where UID = 1")
+        user = cursor.fetchall()
+        return jsonify({
+            'status': 'success',
+            'members': user
+        })
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close() 
+        conn.close()
+
 @app.route('/getProduct', methods=['GET'])
 def product():
     conn = mysql.connect()

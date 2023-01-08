@@ -32,7 +32,7 @@
     </header>
 
     <!-- section -->
-    <section class="py-4">
+    <section class="py-4" >
         <div class="container" id="app">
             <div class="text-center mb-4">
                 <h2 class="text-center">User Information</h2>
@@ -93,12 +93,14 @@
                 window.open("index.html", "_self")
             },
             onCreate() {
+                console.log("F")
                 axios({
                     method: 'get',
-                    url: 'http://localhost:5000/userList',
+                    url: 'http://localhost:5000/user',
                 })
-                    .then((response) => console.log(response))
-                    .catch((error) => console.log(error))
+                .then((response) => console.log(response.data.members[0]))
+                .catch((error) => console.log(error))
+                console.log("S")
             },
             toOrder() {
                 window.open("productProgess.html", "_self")
