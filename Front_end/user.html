@@ -31,32 +31,28 @@
 
     <!-- section -->
     <section class="py-4">
-        <div class="container">
+        <div class="container" id="app">
             <div class="text-center mb-4">
                 <h2 class="text-center">User Information</h2>
                 <hr>
             </div>
             <div id="userList" class="column">
                 <div class="box">
-                    <h4 class="text-center">密碼:</h4>
+                    <h4 class="text-center" type="text" v-model="password">密碼:</h4>
                 </div>
                 <div class="box">
-                    <h4 class="text-center">Email:</h4>
+                    <h4 class="text-center" type="text" v-model="email">Email:</h4>
                 </div>
                 <div class="box">
-                    <h4 class="text-center">電話:</h4>
+                    <h4 class="text-center" type="text" v-model="phone">電話:</h4>
                 </div>
                 <div class="box">
-                    <h4 class="text-center">地址</h4>
+                    <h4 class="text-center" type="text" v-model="address">地址:</h4>
                 </div>
-                <div class="box">
-                    <h4 class="text-center">訂單紀錄</h4>
-                </div>
-                <div class="box">
-                    <h4 class="text-center">專案管理</h4>
-                </div>
-                <div class="box">
-                    <button id="logout" class="logout">登出</button>
+                <hr>
+                <div class="buttonbox">
+                    <button type="text" @click="toOrder()">訂單紀錄</button>
+                    <button type="text" @click="toProject()">專案管理</button>
                 </div>
             </div>
             <!-- productList -->
@@ -80,4 +76,41 @@
     crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<!-- Vue.js -->
+<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+    Vue.createApp({
+        data: function () {
+            return {
+                password: '密碼:',
+                email: 'Email:',
+                phone: '電話:',
+                address: '地址:',
+            };
+        },
+        methods: {
+            onCancel() {
+                window.open("index.html", "_self")
+            },
+            onCreate() {
+                axios({
+                        method: 'post',
+                        url: 'http://localhost:5000/user',
+                    })
+                    .then((response) => console.log(response))
+                    .catch((error) => console.log(error))
+            },
+            toOrder() {
+                window.open("productProgess.html","_self")
+            },
+            toProject() {
+                window.open("productItem.html","_self")
+            }
+        },
+        mounted: function () {
+            this.onCreate();
+        },
+    }).mount('#app');
+</script>
 </html>

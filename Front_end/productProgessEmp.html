@@ -43,25 +43,32 @@
                 <img class="card-img-top" src="P_20220810_235241.jpg" alt="">
                 </div>
                 <div class="box">
-                    <text type="text" id="progess1" class="text-center" v-model="progess1">推測:</text>
+                    <text type="text" id="progess1" class="text-center">推測:</text>
+                    <input type="text" id="progess1" class="text-center" v-model="progess1">
                 </div>
                 <div class="box">
-                    <text type="text" id="progess2" class="text-center" v-model="progess2">材料訂製:</text>
+                    <text type="text" id="progess2" class="text-center">材料訂製:</text>
+                    <input type="text" id="progess2" class="text-center" v-model="progess2">
+                </div>
+                <div id="application" class="box">
+                    <text type="text" id="progess3" class="text-center">繪圖:</text>
+                    <input type="text" v-model="progess3" class="text-center" />
+                    Here is : {{ progess3 }}
                 </div>
                 <div class="box">
-                    <text type="text" id="progess3" class="text-center" v-model="progess3">繪圖:</text>
+                    <text type="text" id="progess4" class="text-center">製作:</text>
+                    <input type="text" id="progess4" class="text-center" v-model="progess4">
                 </div>
                 <div class="box">
-                    <text type="text" id="progess4" class="text-center" v-model="progess4">製作:</text>
+                    <text type="text" id="progess5" class="text-center">測試:</text>
+                    <input type="text" id="progess5" class="text-center" v-model="progess5">
                 </div>
                 <div class="box">
-                    <text type="text" id="progess5" class="text-center" v-model="progess5">測試:</text>
-                </div>
-                <div class="box">
-                    <text type="text" id="progess6" class="text-center" v-model="progess6">運送:</text>
+                    <text type="text" id="progess6" class="text-center">運送:</text>
+                    <input type="text" id="progess6" class="text-center" v-model="progess6">
                 </div>
                 <div class="Delete">
-                    <button type="text" id="Delete" class="logout">刪除商品</button>
+                    <button type="text" id="Delete" class="logout" @click="onSubmit()">刪除商品</button>
                 </div>
             </div>
             <!-- productList -->
@@ -80,9 +87,17 @@
     integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
     crossorigin="anonymous"></script>
 <!-- bootstrap.js -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
-    integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
-    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src=""https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    var application = new Vue({
+        el: '#app',
+        data: {
+            progress3: "fefefji"
+        }
+
+    });
+</script>
 </html>
