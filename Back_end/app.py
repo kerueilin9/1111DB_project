@@ -54,5 +54,23 @@ def home():
         cursor.close() 
         conn.close()
 
+@app.route('/getProduct', methods=['GET'])
+def product():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+    try:
+        cursor.execute("SELECT * from product")
+        productList = cursor.fetchall()
+        return jsonify({
+            'status' : 'success',
+            'members' : productList
+        })
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
 if __name__ == '__main__':
     app.run()
