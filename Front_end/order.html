@@ -43,7 +43,15 @@
                     <input type='text' name='quantity' value='1' class='qty' />
                     <input type='button' value='+' class='qtyplus' field='quantity' />
                     <div class="registerForm">
-                        <p class="price" id="productPrice">${{product.realPrice}}</p>
+                        <p class="price" id="productPrice">
+                            <div v-if="product.Price !== product.realPrice">
+                                $<span class="text-danger">{{product.realPrice}}</span><s>{{product.Price}}</s>
+                                NTD
+                            </div>
+                            <div v-else>
+                                ${{product.Price}} NTD
+                            </div>
+                        </p>
                         <button type="Button">加入購物車</button>
                     </div>
                 </div>
