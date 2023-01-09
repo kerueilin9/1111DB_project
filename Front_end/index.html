@@ -38,7 +38,7 @@
                 <div class="box">
                     <div class="container-1">
                         <span class="icon"><i class="fa fa-search"></i></span>
-                        <input type="search" id="search" placeholder="Search..." />
+                        <input type="search" id="search" placeholder="Search..." v-model="searchText" />
                     </div>
                 </div>
                 <span class="iconCart"><img src="shopingCart.png" alt="icon"></span>
@@ -59,7 +59,7 @@
                 <!-- productList -->
                 <div id="productList" class="row">
                     <div class="col-md-4 col-6" @click="onOrder(product.PID)" id="product.PID"
-                        v-for="product in products" :key="productsKey">
+                        v-for="product in currentProducts" :key="productsKey">
                         <div class="card my-3">
                             <img class="card-img-top" src="P_20220810_235241.jpg" alt="">
                             <div class="card-body">
@@ -151,7 +151,9 @@
                 signInAccount: '',
                 signInPassword: '',
                 productsKey: 0,
-                products: []
+                products: [],
+                currentProducts: [],
+                searchText: '',
             };
         },
         methods: {
@@ -197,7 +199,7 @@
             onCreate() {
                 axios.get('http://localhost:5000/getAllProduct')
                     .then((response) => {
-                        this.products = response.data.values
+                        this.currentProducts = this.products = response.data.values
                         this.products.forEach(element => {
                             element.realPrice = element.Price * element.Discount;
                         });
@@ -224,6 +226,19 @@
                     })
                     .catch((error) => console.log(error))
 
+            }
+        },
+        watch: {
+            searchText: function(newValue, oldValue) {
+                if (newValue == '')
+                    this.currentProducts = this.products
+                else
+                {
+                    newValue = newValue.toLowerCase()
+                    this.currentProducts = this.products.filter(element => {
+                        return element.productName.toLowerCase().includes(newValue) || element.Describe.toLowerCase().includes(newValue)
+                    });
+                }
             }
         },
         mounted: function () {
