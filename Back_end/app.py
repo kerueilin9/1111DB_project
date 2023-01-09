@@ -276,6 +276,27 @@ def getShoppingCart():
         cursor.close()
         conn.close()
 
+#刪除購物車
+@app.route('/deleteShoppingCart', methods=['POST'])
+def deleteShoppingCart():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+    try:
+        data = request.get_json()
+        global UID
+        val = (UID, data['Quantity'])
+        cursor.execute("DELETE FROM shoppingCart AS S WHERE S.UID = %s AND S.CID = %s", val)
+        conn.commit()
+        return jsonify({
+            'status' : 'success',
+            'values' : '成功刪除'
+        })
+    # except Exception as e:
+    #     print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
 #______________訂單(order SQL)______________
 @app.route('/getAllOrder', methods=['GET'])
 def getOrder():
