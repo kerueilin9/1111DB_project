@@ -19,54 +19,53 @@
 </head>
 
 <body>
-
-    <header id="homeHeader" class="jumbotron">
-        <div class="headerContainer">
-            <div class="iconHome">
-                <img src="image.png" alt="icon">
+    <div id="app">
+        <header id="homeHeader" class="jumbotron">
+            <div class="headerContainer">
+                <div class="iconHome">
+                    <img src="image.png" alt="icon" @click="toMainPage()">
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <!-- section -->
-    <section class="py-4">
-        <div class="container" id="app">
-            <div class="text-center mb-4">
-                <h2 class="registerHeader">使用者資訊</h2>
-                <hr>
-                <form class="registerForm">
-                    <div class="inputDiv">
-                        <div class="inputBoxLabel">電子郵件
-                            <p class="necessaryInputLabel">*</p>
-                        </div>
-                        <input class="inputBox" type="email" readonly="readonly" v-model="email" required />
-                    </div>
-                    <div class="inputDiv">
-                        <div class="inputBoxLabel">電話
-                            <p class="necessaryInputLabel">*</p>
-                        </div>
-                        <input class="inputBox" type="text" readonly="readonly" v-model="phone" required />
-                    </div>
-                    <div class="inputDiv">
-                        <div class="inputBoxLabel">地址
-                            <p class="necessaryInputLabel">*</p>
-                        </div>
-                        <input class="inputBox" type="text" readonly="readonly" v-model="address" required />
-                    </div>
+        <!-- section -->
+        <section class="py-4">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="registerHeader">使用者資訊</h2>
                     <hr>
-                    <div class="submitDiv">
-                        <button class="logoutButton" type="button" @click="toMainPage()">登出</button>
-                        <button class="cancelButton" type="button" @click="toOrder()">訂單資訊</button>
-                        <button class="submitButton" type="button" @click="toProject()">專案資訊</button>
-                    </div>
-                </form>
+                    <form class="registerForm">
+                        <div class="inputDiv">
+                            <div class="inputBoxLabel">電子郵件
+                                <p class="necessaryInputLabel">*</p>
+                            </div>
+                            <input class="inputBox" type="email" readonly="readonly" v-model="email" required />
+                        </div>
+                        <div class="inputDiv">
+                            <div class="inputBoxLabel">電話
+                                <p class="necessaryInputLabel">*</p>
+                            </div>
+                            <input class="inputBox" type="text" readonly="readonly" v-model="phone" required />
+                        </div>
+                        <div class="inputDiv">
+                            <div class="inputBoxLabel">地址
+                                <p class="necessaryInputLabel">*</p>
+                            </div>
+                            <input class="inputBox" type="text" readonly="readonly" v-model="address" required />
+                        </div>
+                        <hr>
+                        <div class="submitDiv">
+                            <button class="logoutButton" type="button" @click="onSignOut()">登出</button>
+                            <button class="cancelButton" type="button" @click="toOrder()">訂單資訊</button>
+                            <button class="submitButton" type="button" @click="toProject()">專案資訊</button>
+                        </div>
+                    </form>
 
+                </div>
             </div>
-        </div>
-    </section>
-    <!-- section end -->
-
-
+        </section>
+        <!-- section end -->
+    </div>
 </body>
 <script>
 
@@ -96,7 +95,7 @@
             };
         },
         methods: {
-            onCancel() {
+            toMainPage() {
                 window.open("index.html", "_self")
             },
             onCreate() {
@@ -120,8 +119,26 @@
             toProject() {
                 window.open("productItem.html", "_self")
             },
-            toMainPage() {
-                window.open("index.html", "_self")
+            onSignOut() {
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:5000/signOut',
+                    data: {
+                        accountStatus: ''
+                    }
+                }).then((response) => {
+                    var signOutResult = response.data.values
+                    if (signOutResult != '登出成功')
+                        alert(response.data.values)
+                    else {
+                        alert('登出成功')
+                        this.accountStatus = response.data.UID;
+                        console.log('status ' + this.accountStatus)
+                        window.open("index.html", "_self")
+                    }
+
+                })
+                event.preventDefault(); // 用來查看console.log
             }
         },
         mounted: function () {

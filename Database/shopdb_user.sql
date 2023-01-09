@@ -41,7 +41,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Tom','Tom0001@gmail.com','Tom0001','Tom0001','member','0900000000','F'),(2,'An','An0002@gmail.com','An0002','An0002','member','0900000001','M'),(3,'aaa','aaa@gmail.com','aaa','aaa','member','0900000002','M'),(4,'bbb','bbb@gmail.com','b','b','member','0900000003','M'),(5,'ccc','c@gmail.com','c','c','member','0900000004','F');
+INSERT INTO `user` VALUES (1,'Tom','Tom0001@gmail.com','Tom0001','Tom0001','manager','0900000000','F'),(2,'An','An0002@gmail.com','An0002','An0002','member','0900000001','M'),(3,'aaa','aaa@gmail.com','aaa','aaa','member','0900000002','M'),(4,'bbb','bbb@gmail.com','b','b','member','0900000003','M'),(5,'ccc','c@gmail.com','c','c','member','0900000004','F');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
