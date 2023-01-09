@@ -62,7 +62,7 @@ var application = new Vue({
            axios.get('http://localhost:5000/userList')
            .then(function(response){
                 console.log(response);
-                application.allData = response.data.members;
+                application.allData = response.data.values;
            });
         }
     }, 
