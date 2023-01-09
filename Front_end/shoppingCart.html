@@ -14,7 +14,7 @@
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <!-- basic.css -->
     <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/shopingCart.css">
+    <link rel="stylesheet" href="css/shoppingCart.css">
     <!-- <link rel="stylesheet" href="./stylesheets/style.css"> -->
 </head>
 
@@ -26,7 +26,9 @@
                 <div class="iconHome">
                     <img src="image.png" alt="icon" @click="toMainPage()">
                 </div>
-                <span class="userImform"><a href="#" @click="onUserProfile()">User name</a></span>
+                <nav>
+                    <a href="#" @click="onUserProfile()">Welcome {{userProfileLabel}}</a>
+                </nav>
             </div>
         </header>
 
@@ -54,8 +56,8 @@
                         <div class="cartColumn">{{product.Describe}}</div>
                         <div class="cartColumn">{{product.realPrice}}</div>
                         <div class="cartColumn"></label><input type='button' value='-' class='qtyminus'
-                                field='quantity' /><input type='text' name='quantity' :value='product.Quantity' class='qty' /><input
-                                type='button' value='+' class='qtyplus' field='quantity' /></div>
+                                field='quantity' /><input type='text' name='quantity' :value='product.Quantity'
+                                class='qty' /><input type='button' value='+' class='qtyplus' field='quantity' /></div>
                         <div class="cartColumn">{{product.realPrice * product.Quantity}}</div>
                     </div>
                 </div>
@@ -110,6 +112,9 @@
             toMainPage() {
                 window.open("index.html", "_self")
             },
+            onUserProfile() {
+                window.open("user.html", "_self")
+            },
             onCreate() {
                 axios.get('http://localhost:5000/getShoppingCart')
                     .then((response) => {
@@ -121,6 +126,19 @@
                         console.log(this.products)
                     })
                     .catch((error) => console.log(error))
+                axios.get('http://localhost:5000/UID')
+                    .then((response) => {
+                        this.accountStatus = response.data.UID;
+                        if (response.data.UID != 0) {
+                            axios.get('http://localhost:5000/user')
+                                .then((response) => {
+                                    this.userProfileLabel = response.data.values[0].Name
+                                })
+                                .catch((error) => console.log(error))
+                        }
+                    })
+                    .catch((error) => console.log(error))
+
             }
         },
         mounted: function () {
