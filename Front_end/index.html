@@ -190,7 +190,11 @@
             },
             onOrder(pid) {
                 if (this.userRole == 'manager') {
-                    alert('manager')
+                    axios.post(`http://localhost:5000/PID/${pid}`)
+                        .then((response) => {
+                            window.open("productEditor.html", "_self")
+                        })
+                        .catch((error) => console.log(error))
                 } else if (this.userRole == 'employee') {
                     alert('')
                 } else {

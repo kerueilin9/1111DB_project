@@ -123,7 +123,7 @@
                         image: this.image,
                         price: this.price,
                         discount: this.discount,
-                        discountPeriod: this.discountPeriod,
+                        discountPeriod: this.discount_Period,
                         describe: this.describe
                     }
                 }).then((response) => {
@@ -136,10 +136,26 @@
                     }
                 })
                 event.preventDefault(); // 用來查看console.log;
-            }
+            },
+            onCreate() {
+                axios.get('http://localhost:5000/getProduct')
+                    .then((response) => {
+                        this.product = response.data.values[0]
+                        this.name = this.product.productName;
+                        this.image = this.product.Image;
+                        this.price = this.product.Price;
+                        this.discount = this.product.Discount;
+                        this.discountPeriod = this.product.Discount_period;
+                        this.describe = this.product.Describe;
+
+                        console.log(response)
+                        console.log(this.product)
+                    })
+                    .catch((error) => console.log(error))
+            },
         },
         mounted: function () {
-
+            this.onCreate()
         },
     }).mount('#app');
 </script>
