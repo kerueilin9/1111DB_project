@@ -61,7 +61,7 @@
                 </div>
                 <!-- productList -->
                 <div id="productList" class="row">
-                    <div class="col-md-4 col-6" @click="onOrder()" id="product.PID" v-for="product in products"
+                    <div class="col-md-4 col-6" @click="onOrder(product.PID)" id="product.PID" v-for="product in products"
                         :key="productsKey">
                         <div class="card my-3">
                             <img class="card-img-top" src="P_20220810_235241.jpg" alt="">
@@ -187,10 +187,12 @@
                 })
                 event.preventDefault(); // 用來查看console.log
             },
-            onOrder() {
-                window.open("order.html", "_self")
-                // 傳PID到後端
-
+            onOrder(pid) {
+                axios.post(`http://localhost:5000/PID/${pid}`)
+                    .then((response) => {
+                        window.open("order.html", "_self")
+                    })
+                    .catch((error) => console.log(error))
             },
             onUserProfile() {
                 window.open("user.html", "_self")

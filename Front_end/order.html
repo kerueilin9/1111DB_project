@@ -33,7 +33,7 @@
         <div class="py-4">
             <div class="containerOrder">
                 <div class="text-center mb-4 productHeader">
-                    <h2 id="productName">商品名稱</h2>
+                    <h2 id="productName">{{product.Name}}</h2>
                     <hr>
                     <img src='P_20220810_235241.jpg' id="productImage" width="400" height="400" alt="">
                     <br>
@@ -43,7 +43,7 @@
                     <input type='text' name='quantity' value='1' class='qty' />
                     <input type='button' value='+' class='qtyplus' field='quantity' />
                     <div class="registerForm">
-                        <p class="price" id="productPrice">$0000</p>
+                        <p class="price" id="productPrice">${{product.realPrice}}</p>
                         <button type="Button">加入購物車</button>
                     </div>
                 </div>
@@ -52,16 +52,7 @@
                         商品規格
                     </div>
                     <div class="InformationBox">
-                        商品規格商品規格商品規格商品規格商品規格商品規格商品規
-                        格商品規格商品規格商品規格商品規格商品規格商品規格商品規
-                        格商品規格商品規格商品規格商品規格商品規格商品規格商
-                        品規格
-                        商品規格商品規格商品規格商品規格商品規格商品規格商品規
-                        格商品規格商品規格商品規格商品規格商品規格商品規格商品規格
-                        商品規格商品規格商品規格商品規格商品規格商品規格商品規格
-
-                        商品規格商品規格商品規格商品規格商品規格商品規格商品規格商品規格商品
-                        規格商品規格商品規格商品規格商品規格商品規格商品規格
+                        {{product.Describe}}
                     </div>
                     <div class="ImformationTitle">
                         客製商品描述
@@ -101,16 +92,28 @@
                 Quantity: '',
                 Price: '',
                 Describe: '',
-                products: []
+                productKey: 0,
+                product: {}
             };
         },
         methods: {
             onMainPage() {
                 window.open("index.html", "_self")
-            }
+            },
+            onCreate() {
+                axios.get('http://localhost:5000/PID')
+                    .then((response) => {
+                        this.product = response.data.members[0]
+                        this.product.realPrice = this.product.Price * this.product.Discount;
+                        this.productsKey++
+                        console.log(response)
+                        console.log(this.product)
+                    })
+                    .catch((error) => console.log(error))
+            },
         },
         mounted: function () {
-
+            this.onCreate()
         },
     }).mount('#app');
 
