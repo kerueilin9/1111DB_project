@@ -60,7 +60,7 @@
                         <button class="editButton" type="button" @click="editData()">修改資料</button>
                         <button class="submitButton" type="button" @click="toProject()">專案資訊</button>
                     </div>
-                    <button class="logoutButton" type="button" @click="toMainPage()">登出</button>
+                    <button class="logoutButton" type="button" @click="onSignOut()">登出</button>
                 </div>
             </div>
         </section>
@@ -125,14 +125,14 @@
             editData() {
                 console.log(this.phone)
                 axios({
-                        method: 'post',
-                        url: 'http://localhost:5000/modifyUser',
-                        data: {
-                            Email: this.email,
-                            Phone: this.phone,
-                            Address: this.address
-                        }
-                    }).then((response) => {
+                    method: 'post',
+                    url: 'http://localhost:5000/modifyUser',
+                    data: {
+                        Email: this.email,
+                        Phone: this.phone,
+                        Address: this.address
+                    }
+                }).then((response) => {
                     var editResult = response.data.values
                     if (editResult != '修改成功')
                         alert(response.data.values)

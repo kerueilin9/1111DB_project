@@ -145,6 +145,26 @@ def getUser():
         cursor.close() 
         conn.close()
 
+#取得身分
+@app.route('/getRole', methods=['GET'])
+def getRole():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+    try:
+        global UID
+        cursor.execute("SELECT Role FROM user WHERE UID = %s", UID)
+        role = cursor.fetchall()
+        return jsonify({
+            'status': 'success',
+            'values': role
+        })
+    # except Exception as e:
+    #     print(e)
+    finally:
+        cursor.close() 
+        conn.close()
+
 #修改使用者資料
 @app.route('/modifyUser', methods=['GET', 'POST'])
 def modifyUser():
@@ -191,7 +211,7 @@ def getAllProduct():
     finally:
         cursor.close()
         conn.close()
-# 點擊產品
+# 進入產品
 @app.route('/getProduct', methods=['GET'])
 def getProduct():
     conn = mysql.connect()
@@ -210,6 +230,51 @@ def getProduct():
     finally:
         cursor.close()
         conn.close()
+
+#______________購物車______________
+
+#加入購物車
+@app.route('/addToShoppingCart', methods=['POST'])
+def addToShoppingCart():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+    try:
+        data = request.get_json()
+        global PID
+        val = (PID, data['Quantity'], data['Customize'])
+        cursor.execute("INSERT INTO user (PID, Quantity, Customize) VALUES (%s, %s, %s)", val)
+        conn.commit()
+        shoppingCart = cursor.fetchall()
+        return jsonify({
+            'status' : 'success',
+            'values' : '已加入購物車'
+        })
+    # except Exception as e:
+    #     print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+#進入購物車
+@app.route('/getShoppingCart', methods=['GET'])
+def getShoppingCart():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+    try:
+        global PID
+        cursor.execute("SELECT * FROM shoppingCart WHERE PID = %s", PID)
+        shoppingCart = cursor.fetchall()
+        return jsonify({
+            'status' : 'success',
+            'values' : shoppingCart
+        })
+    # except Exception as e:
+    #     print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
 #______________換頁傳遞資訊______________
 # PID POST
 @app.route('/PID/<int:pid>', methods=['POST'])
