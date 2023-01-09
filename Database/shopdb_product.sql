@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: localhost    Database: shopdb
+-- Host: 127.0.0.1    Database: shopdb
 -- ------------------------------------------------------
 -- Server version	8.0.31
 
@@ -24,18 +24,19 @@ DROP TABLE IF EXISTS `product`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `product` (
   `PID` int NOT NULL AUTO_INCREMENT,
-  `Image` varchar(256),
+  `Image` varchar(256) DEFAULT NULL,
   `Manager_ID` int NOT NULL,
-  `Name` varchar(256) NOT NULL,
+  `Type` varchar(16) NOT NULL,
   `Describe` varchar(256) NOT NULL,
   `Quantity` int NOT NULL,
   `Price` int NOT NULL,
-  `Discount` decimal(3, 2) NOT NULL,
+  `Discount` decimal(3,2) NOT NULL,
   `Discount_period` datetime DEFAULT NULL,
+  `productName` varchar(64) NOT NULL,
   PRIMARY KEY (`PID`),
   KEY `Manager_ID` (`Manager_ID`),
   CONSTRAINT `product_ibfk_1` FOREIGN KEY (`Manager_ID`) REFERENCES `manager` (`Manager_ID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,13 +45,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES 
-(1,_binary 'image',1,'block','This is a square',5,1200,0.8,'2023-12-12 12:59:23'), 
-(2,_binary 'image',1,'red','This is a book',9,300,1,'0000-00-00 00:00:00'),
-(3,_binary 'image',1,'blue','This is a square',5,1200,1,'2023-12-12 12:59:23'),
-(4,_binary 'image',1,'green','This is a square',5,1200,1,'2023-12-12 12:59:23'),
-(5,_binary 'image',1,'yellow','This is a square',5,1200,1,'2023-12-12 12:59:23'),
-(6,_binary 'image',1,'blue','This is a square',5,1200,1,'2023-12-12 12:59:23');
+INSERT INTO `product` VALUES (1,'image',1,'block','This is a square',5,1200,1.00,'0000-00-00 00:00:00',''),(2,'P_20220810_235241.jpg',1,'block','This is a square',5,1200,1.00,'2023-01-01 01:01:01',''),(4,'P_20220810_235241.jpg',1,'block','This is a circle',10,500,0.50,'2023-01-01 01:01:01',''),(5,'P_20220810_235241.jpg',1,'block','This is a circle',10,200,0.80,'2023-01-01 01:01:02',''),(6,'P_20220810_235241.jpg',1,'block','This is a circle',10,200,0.80,'2023-01-01 01:01:02','Square');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -63,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-08 17:58:47
+-- Dump completed on 2023-01-09 16:30:49
