@@ -111,7 +111,7 @@
             onCreate() {
                 axios.get('http://localhost:5000/PID')
                     .then((response) => {
-                        this.product = response.data.members[0]
+                        this.product = response.data.values[0]
                         this.product.realPrice = this.product.Price * this.product.Discount;
                         this.productsKey++
                         console.log(response)
