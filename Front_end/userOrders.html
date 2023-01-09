@@ -108,6 +108,7 @@
                 // element
                 userProfileLabel: '',
                 accountStatus: '',
+                userRole: ''
             };
         },
         methods: {
@@ -117,30 +118,21 @@
             onUserProfile() {
                 window.open("user.html", "_self")
             },
+            onShow() {
+                if (this.userRole == 'member') {
+                    alert('member')
+                } else {
+                    alert('employee/manager')
+                }
+            },
             onCreate() {
-                axios.get('http://localhost:5000/getShoppingCart')
+                axios.get('http://localhost:5000/user')
                     .then((response) => {
-                        this.products = response.data.values
-                        this.products.forEach(element => {
-                            element.realPrice = element.Price * element.Discount;
-                        });
-                        this.productsKey++
-                        console.log(this.products)
+                        this.userProfileLabel = response.data.values[0].Name
+                        this.userRole = response.data.values[0].Role
+                        this.onShow();
                     })
                     .catch((error) => console.log(error))
-                axios.get('http://localhost:5000/UID')
-                    .then((response) => {
-                        this.accountStatus = response.data.UID;
-                        if (response.data.UID != 0) {
-                            axios.get('http://localhost:5000/user')
-                                .then((response) => {
-                                    this.userProfileLabel = response.data.values[0].Name
-                                })
-                                .catch((error) => console.log(error))
-                        }
-                    })
-                    .catch((error) => console.log(error))
-
             }
         },
         mounted: function () {
