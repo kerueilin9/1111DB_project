@@ -178,6 +178,37 @@ def product():
         cursor.close()
         conn.close()
 
+# PID POST
+@app.route('/PID/<int:pid>', methods=['POST'])
+def Update(pid):
+    global PID
+    PID = pid
+    return jsonify({
+        'status' : 'success',
+        'members' : pid
+    })
+
+# PID GET
+@app.route('/PID', methods=['GET'])
+def GetProductByPID():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+    
+    try:
+        global PID
+        cursor.execute("SELECT * from product WHERE PID=" + str(PID))
+        product = cursor.fetchall()
+        return jsonify({
+            'status' : 'success',
+            'members' : product
+        })
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+    
+
 # 取得UID
 @app.route('/UID', methods=['GET'])
 def getUID():
