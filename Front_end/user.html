@@ -137,7 +137,8 @@
                     if (editResult != '修改成功')
                         alert(response.data.values)
                     else {
-                        alert('修改成功').then(window.reload())
+                        alert('修改成功')
+                        location.reload()
                     }
                 })
             },
