@@ -51,6 +51,12 @@ nav a:hover {
     text-decoration: none;
 }
 
+.userProfile {
+    padding-right: 10px;
+    color: rgb(183, 179, 63);
+    text-decoration: none;
+}
+
 .header h5 {
     color: rgb(214, 207, 72);
 }

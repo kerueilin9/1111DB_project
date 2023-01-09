@@ -27,7 +27,7 @@
                         <a data-toggle="modal" href="#signInModal">登入</a>
                     </div>
                     <div v-else-if="accountStatus != ''">
-                        <a href="#" @click="onUserProfile()">User name</a>
+                        <input style type="button" href="#" @click="onUserProfile()" v-model="userProfileLabel"></input>
                         <a href="#" @click="onSignOut()">登出</a>
                     </div>
 
@@ -149,6 +149,7 @@
         data: function () {
             return {
                 // element
+                userProfileLabel: '',
                 accountStatus: '',
                 signInAccount: '',
                 signInPassword: '',
@@ -189,7 +190,7 @@
             onOrder() {
                 window.open("order.html", "_self")
                 // 傳PID到後端
-                
+
             },
             onUserProfile() {
                 window.open("user.html", "_self")
@@ -229,6 +230,18 @@
                 axios.get('http://localhost:5000/UID')
                     .then((response) => {
                         this.accountStatus = response.data.UID;
+                        if (response.data.UID != 0) {
+                            axios.get('http://localhost:5000/user')
+                                .then((response) => {
+                                    console.log(response)
+                                    users = response.data.values
+                                    users.forEach(user => {
+                                        this.userProfileLabel = user.Name;
+                                    })
+
+                                })
+                                .catch((error) => console.log(error))
+                        }
                         console.log('re' + response.data.UID)
                     })
                     .catch((error) => console.log(error))
