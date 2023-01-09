@@ -19,6 +19,8 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 CORS(app, resources={r'/*': {'origins': '*'}})
 
+#______________註冊______________
+
 # 註冊
 @app.route('/signUp', methods=['GET','POST'])
 def signUp():
@@ -51,6 +53,8 @@ def signUp():
     finally:
         cursor.close() 
         conn.close()
+
+#______________登入______________
 
 # 登入
 @app.route('/signIn', methods=['GET', 'POST'])
@@ -98,6 +102,8 @@ def signIn():
         cursor.close() 
         conn.close()
 
+#______________使用者______________
+
 # 查看會員
 @app.route('/userList', methods=['GET'])
 def userList():
@@ -138,8 +144,33 @@ def getUser():
     finally:
         cursor.close() 
         conn.close()
- 
-        
+
+#修改使用者資料
+@app.route('/modifyUser', methods=['GET', 'POST'])
+def modifyUser():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+    try:
+        data = request.get_json()
+        global UID
+        cursor.execute("UPDATE user SET Email= %s, Phone= %s  WHERE UID = %s", data['Email'], data['Phone'], UID)
+        conn.commit()
+        cursor.execute("UPDATE member SET Address= %s WHERE Member_ID = %s",data['Address'], UID)
+        conn.commit()
+        Address = cursor.fetchall()
+        return jsonify({
+            'status': 'success',
+            'values': '修改成功'
+        })
+    # except Exception as e:
+    #     print(e)
+    finally:
+        cursor.close() 
+        conn.close()
+
+#______________產品______________
+
 # 主頁產品
 @app.route('/getAllProduct', methods=['GET'])
 def getAllProduct():
@@ -160,7 +191,7 @@ def getAllProduct():
         conn.close()
 # 點擊產品
 @app.route('/getProduct', methods=['GET'])
-def product():
+def getProduct():
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
 
@@ -177,7 +208,7 @@ def product():
     finally:
         cursor.close()
         conn.close()
-
+#______________換頁傳遞資訊______________
 # PID POST
 @app.route('/PID/<int:pid>', methods=['POST'])
 def Update(pid):
@@ -188,27 +219,6 @@ def Update(pid):
         'values' : pid
     })
 
-# PID GET
-@app.route('/PID', methods=['GET'])
-def GetProductByPID():
-    conn = mysql.connect()
-    cursor = conn.cursor(pymysql.cursors.DictCursor)
-    
-    try:
-        global PID
-        cursor.execute("SELECT * from product WHERE PID=" + str(PID))
-        product = cursor.fetchall()
-        return jsonify({
-            'status' : 'success',
-            'values' : product
-        })
-    except Exception as e:
-        print(e)
-    finally:
-        cursor.close()
-        conn.close()
-    
-
 # 取得UID
 @app.route('/UID', methods=['GET'])
 def getUID():
@@ -218,6 +228,7 @@ def getUID():
         'UID': UID
     })
 
+#______________登出______________
 
 # 登出
 @app.route('/signOut', methods=['POST'])
