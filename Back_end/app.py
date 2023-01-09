@@ -185,7 +185,7 @@ def Update(pid):
     PID = pid
     return jsonify({
         'status' : 'success',
-        'members' : pid
+        'values' : pid
     })
 
 # PID GET
@@ -200,7 +200,7 @@ def GetProductByPID():
         product = cursor.fetchall()
         return jsonify({
             'status' : 'success',
-            'members' : product
+            'values' : product
         })
     except Exception as e:
         print(e)

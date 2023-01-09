@@ -112,11 +112,11 @@ nav a:hover {
 
 .iconCart {
     justify-content: right;
-    margin-right: 10px;
+    margin-right: 50px;
 }
 
 .iconCart img {
-    width: 200px;
+    height: 80px;
 }
 
 @media (min-width: 576px) {}
