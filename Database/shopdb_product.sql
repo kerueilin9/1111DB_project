@@ -45,7 +45,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (8,'P_20220810_235241.jpg',9,'block','This is a circle',10,200,0.80,'2023-01-01 01:01:02','Square'),(9,'P_20220810_235241.jpg',9,'block','This is a circle',10,100,0.90,'2023-01-01 01:01:03','Circle'),(10,'P_20220810_235241.jpg',9,'Cable','This is a cable',10,50,1.00,'2023-01-01 01:01:04','Cable'),(11,'P_20220810_235241.jpg',9,'Phone','This is a phone',10,1000,0.50,'2023-01-01 01:01:05','Phone');
+INSERT INTO `product` VALUES (8,'.\productImage\P_20220810_235241.jpg',9,'block','This is a circle',10,200,0.80,'2023-01-01 01:01:02','Square'),(9,'.\productImage\P_20220810_235241.jpg',9,'block','This is a circle',10,100,0.90,'2023-01-01 01:01:03','Circle'),(10,'.\productImage\P_20220810_235241.jpg',9,'Cable','This is a cable',10,50,1.00,'2023-01-01 01:01:04','Cable'),(11,'.\productImage\P_20220810_235241.jpg',9,'Phone','This is a phone',10,1000,0.50,'2023-01-01 01:01:05','Phone');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
