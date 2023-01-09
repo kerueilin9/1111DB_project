@@ -39,9 +39,9 @@
                     <br>
                     <br>
                     數量&emsp;
-                    </label><input type='button' value='-' class='qtyminus' field='quantity' /><input type='text'
-                        name='quantity' value='0' class='qty' /><input type='button' value='+' class='qtyplus'
-                        field='quantity' />
+                    </label><input type='button' value='-' class='qtyminus' field='quantity' />
+                    <input type='text' name='quantity' value='1' class='qty' />
+                    <input type='button' value='+' class='qtyplus' field='quantity' />
                     <div class="registerForm">
                         <p class="price" id="productPrice">$0000</p>
                         <button type="Button">加入購物車</button>
@@ -113,6 +113,29 @@
 
         },
     }).mount('#app');
+
+    $(function() {
+        $('.qtyplus').click(function(e) {
+            e.preventDefault();
+            fieldName = $(this).attr('field');
+            var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+            if (!isNaN(currentVal)) {
+                $('input[name=' + fieldName + ']').val(currentVal + 1);
+            } else {
+                $('input[name=' + fieldName + ']').val(0);
+            }
+        });
+        $(".qtyminus").click(function(e) {
+            e.preventDefault();
+            fieldName = $(this).attr('field');
+            var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+            if (!isNaN(currentVal) && currentVal > 1) {
+                $('input[name=' + fieldName + ']').val(currentVal - 1);
+            } else {
+                $('input[name=' + fieldName + ']').val(1);
+            }
+        });
+    });
 </script>
 
 </html>

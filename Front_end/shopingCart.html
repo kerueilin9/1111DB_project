@@ -52,7 +52,7 @@
                         <div class="cartColumn">商品</div>
                         <div class="cartColumn">客製內容</div>
                         <div class="cartColumn">單價</div>
-                        <div class="cartColumn"></label><input type='button' value='-' class='qtyminus' field='quantity'/><input type='text' name='quantity' value='0' class='qty'/><input type='button' value='+' class='qtyplus' field='quantity'/></div>
+                        <div class="cartColumn"></label><input type='button' value='-' class='qtyminus' field='quantity'/><input type='text' name='quantity' value='1' class='qty'/><input type='button' value='+' class='qtyplus' field='quantity'/></div>
                         <div class="cartColumn">總額</div>
                     </div>
                     <div class="InformationBox">
@@ -88,11 +88,7 @@
 
     </div>
     <!-- section end -->
-
-
 </body>
-<script>
-</script>
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- popper.js -->
@@ -101,5 +97,29 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    $(function() {
+        $('.qtyplus').click(function(e) {
+            e.preventDefault();
+            fieldName = $(this).attr('field');
+            var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+            if (!isNaN(currentVal)) {
+                $('input[name=' + fieldName + ']').val(currentVal + 1);
+            } else {
+                $('input[name=' + fieldName + ']').val(0);
+            }
+        });
+        $(".qtyminus").click(function(e) {
+            e.preventDefault();
+            fieldName = $(this).attr('field');
+            var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+            if (!isNaN(currentVal) && currentVal > 0) {
+                $('input[name=' + fieldName + ']').val(currentVal - 1);
+            } else {
+                $('input[name=' + fieldName + ']').val(0);
+            }
+        });
+    });
+</script>
 
 </html>
