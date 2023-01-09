@@ -222,18 +222,16 @@
                                 })
                                 .catch((error) => console.log(error))
                         }
-                        console.log('re' + response.data.UID)
                     })
                     .catch((error) => console.log(error))
 
             }
         },
         watch: {
-            searchText: function(newValue, oldValue) {
+            searchText: function (newValue, oldValue) {
                 if (newValue == '')
                     this.currentProducts = this.products
-                else
-                {
+                else {
                     newValue = newValue.toLowerCase()
                     this.currentProducts = this.products.filter(element => {
                         return element.productName.toLowerCase().includes(newValue) || element.Describe.toLowerCase().includes(newValue)
