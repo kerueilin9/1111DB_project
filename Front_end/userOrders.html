@@ -48,33 +48,16 @@
                         <div class="Lable">數量</div>
                         <div class="Lable">查看進度</div>
                     </div>
-                    <div class="InformationBox">
+                    <div class="InformationBox" v-for="order in orders" :key="ordersKey">
                         <div class="cartColumn">
-                            <img src="image.png" alt="icon">
+                            <img :src="order.Image" alt="icon">
                         </div>
-                        <div class="cartColumn">商品</div>
-                        <div class="cartColumn">客製內容1asdffafaeafafseasfasdffasfeafasefase11111fdgfdgssgdfff11111111
-                        </div>
-                        <div class="cartColumn">單價</div>
-                        <div class="cartColumn">數量</div>
+                        <div class="cartColumn">商品1</div>
+                        <div class="cartColumn">客製內容1</div>
+                        <div class="cartColumn">單價1</div>
+                        <div class="cartColumn">數量1</div>
                         <div class="cartColumn"><input class="submitButton" type="submit" value="查看"
                                 @click="onSubmit()"></div>
-                    </div>
-                    <div class="InformationBox">
-                        <div class="cartColumn">圖片</div>
-                        <div class="cartColumn">商品</div>
-                        <div class="cartColumn">客製內容</div>
-                        <div class="cartColumn">單價</div>
-                        <div class="cartColumn">數量</div>
-                        <div class="cartColumn">總額</div>
-                    </div>
-                    <div class="InformationBox">
-                        <div class="cartColumn">圖片</div>
-                        <div class="cartColumn">商品</div>
-                        <div class="cartColumn">客製內容</div>
-                        <div class="cartColumn">單價</div>
-                        <div class="cartColumn">數量</div>
-                        <div class="cartColumn">總額</div>
                     </div>
                 </div>
             </div>
@@ -108,6 +91,8 @@
                 // element
                 userProfileLabel: '',
                 accountStatus: '',
+                ordersKey: 0,
+                orders: [],
                 userRole: ''
             };
         },

@@ -392,5 +392,23 @@ def editProduct():
         cursor.close()
         conn.close()
 
+#取得商品
+@app.route('/getTargetProduct/<int:pid>', methods=['get'])
+def getTargetProduct(pid):
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+    try:
+        cursor.execute("SELECT * FROM product WHERE PID = %s", pid)
+        product = cursor.fetchall()
+        return jsonify({
+            'status' : 'success',
+            'values' : product
+        })
+    # except Exception as e:
+    #     print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
 if __name__ == '__main__':
     app.run()
