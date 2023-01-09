@@ -284,7 +284,7 @@ def deleteShoppingCart():
     try:
         data = request.get_json()
         global UID
-        val = (UID, data['Quantity'])
+        val = (UID, data['CID'])
         cursor.execute("DELETE FROM shoppingCart AS S WHERE S.UID = %s AND S.CID = %s", val)
         conn.commit()
         return jsonify({
@@ -306,6 +306,8 @@ def shoppingCartAddOrder():
         global UID
         val = (data['PID'], 9, UID, data['Order_date'], data['Quantity'], '剛剛成立', '貨到付款', '貨到付款', data['Fee'], data['Other_request'])
         cursor.execute("INSERT INTO `order` (PID, Manager_ID, Member_ID, Order_date, Quantity, Status, Payment_method, Delivery_method, Fee, Other_request) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", val)
+        conn.commit()
+        cursor.execute("DELETE FROM `shoppingCart`")
         conn.commit()
         return jsonify({
             'status' : 'success',
