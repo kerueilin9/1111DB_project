@@ -152,6 +152,25 @@
                     })
                     .catch((error) => console.log(error))
             },
+            onSubmit() {
+                this.products.forEach(element => {
+                    let today = moment().format('YYYY/MM/DD HH:mm:ss')
+                    axios({
+                    method: 'post',
+                    url: 'http://localhost:5000/shoppingCartAddOrder',
+                    data: {
+                        PID: element.PID,
+                        Order_date: today,
+                        Quantity: element.Quantity,
+                        Fee: element.realPrice * element.Quantity,
+                        Other_request: element.Describe,
+                    }})
+                    .then((response) => {
+                        
+                    })
+                    .catch((error) => console.log(error))
+                })
+            },
             increase(product) {
                 product.Quantity += 1;
                 this.totalPriceKey++;

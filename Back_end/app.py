@@ -297,6 +297,26 @@ def deleteShoppingCart():
         cursor.close()
         conn.close()
 
+@app.route('/shoppingCartAddOrder', methods=['POST'])
+def shoppingCartAddOrder():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+    try:
+        data = request.get_json()
+        global UID
+        val = (data['PID'], 9, UID, data['Order_date'], data['Quantity'], '剛剛成立', '貨到付款', '貨到付款', data['Fee'], data['Other_request'])
+        cursor.execute("INSERT INTO `order` (PID, Manager_ID, Member_ID, Order_date, Quantity, Status, Payment_method, Delivery_method, Fee, Other_request) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", val)
+        conn.commit()
+        return jsonify({
+            'status' : 'success',
+            'values' : '訂單成立'
+        })
+    # except Exception as e:
+    #     print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
 #______________訂單(order SQL)______________
 @app.route('/getAllOrder', methods=['GET'])
 def getOrder():
