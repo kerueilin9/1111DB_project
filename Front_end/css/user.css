@@ -163,14 +163,3 @@
     width: 240px;
     border-radius: 8px;
 }
-
-.editButton {
-    position: absolute;
-    left: 310px;
-    padding: 10px 20px;
-    border: 3px solid rgb(245, 211, 211);
-    color: rgb(255, 255, 255);
-    background-color: #fff200;
-    width: 120px;
-    border-radius: 8px;
-}
