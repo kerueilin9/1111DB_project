@@ -46,33 +46,17 @@
                         <div class="Lable">數量</div>
                         <div class="Lable">總額</div>
                     </div>
-                    <div class="InformationBox">
+                    <div class="InformationBox" v-for="product in products" :key="productsKey">
                         <div class="cartColumn">
-                            <img src="image.png" alt="icon">
+                            <img :src="product.Image" alt="icon">
                         </div>
-                        <div class="cartColumn">商品</div>
+                        <div class="cartColumn">{{product.productName}}</div>
                         <div class="cartColumn">客製內容</div>
-                        <div class="cartColumn">單價</div>
+                        <div class="cartColumn">{{product.Price}}</div>
                         <div class="cartColumn"></label><input type='button' value='-' class='qtyminus'
                                 field='quantity' /><input type='text' name='quantity' value='1' class='qty' /><input
                                 type='button' value='+' class='qtyplus' field='quantity' /></div>
-                        <div class="cartColumn">總額</div>
-                    </div>
-                    <div class="InformationBox">
-                        <div class="cartColumn">圖片</div>
-                        <div class="cartColumn">商品</div>
-                        <div class="cartColumn">客製內容</div>
-                        <div class="cartColumn">單價</div>
-                        <div class="cartColumn">數量</div>
-                        <div class="cartColumn">總額</div>
-                    </div>
-                    <div class="InformationBox">
-                        <div class="cartColumn">圖片</div>
-                        <div class="cartColumn">商品</div>
-                        <div class="cartColumn">客製內容</div>
-                        <div class="cartColumn">單價</div>
-                        <div class="cartColumn">數量</div>
-                        <div class="cartColumn">總額</div>
+                        <div class="cartColumn">{{product.productName}}</div>
                     </div>
                 </div>
                 <div class="deliveryDetail">
@@ -118,7 +102,8 @@
                 signInAccount: '',
                 signInPassword: '',
                 productsKey: 0,
-                products: []
+                products: [],
+                address: '',
             };
         },
         methods: {
@@ -126,7 +111,16 @@
                 window.open("index.html", "_self")
             },
             onCreate() {
-
+                axios.get('http://localhost:5000/getShoppingCart')
+                    .then((response) => {
+                        this.products = response.data.values
+                        this.products.forEach(element => {
+                            element.realPrice = element.Price * element.Discount;
+                        });
+                        this.productsKey++
+                        console.log(this.products)
+                    })
+                    .catch((error) => console.log(error))
             }
         },
         mounted: function () {
