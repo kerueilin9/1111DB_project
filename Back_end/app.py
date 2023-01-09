@@ -277,7 +277,7 @@ def getShoppingCart():
         conn.close()
 
 #______________訂單(order SQL)______________
-@app.route('/getShoppingCart', methods=['GET'])
+@app.route('/getAllOrder', methods=['GET'])
 def getOrder():
     conn = mysql.connect()
 

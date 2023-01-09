@@ -56,9 +56,10 @@
                         <hr>
                     </form>
                     <div class="submitDiv">
-                        <button class="cancelButton" type="button" @click="toOrder()">訂單資訊</button>
-                        <button class="editButton" type="button" @click="editData()">修改資料</button>
-                        <button class="submitButton" type="button" @click="toProject()">專案資訊</button>
+                        <div v-if="">
+                            <button class="cancelButton" type="button" @click="toOrder()">訂單資訊</button>
+                        </div>
+                        <button class="editButton" type="button" @click="editData()">更新資料</button>
                     </div>
                     <button class="logoutButton" type="button" @click="onSignOut()">登出</button>
                 </div>
@@ -92,26 +93,12 @@
                 email: '',
                 phone: '',
                 address: '',
+                userRole: ''
             };
         },
         methods: {
             toMainPage() {
                 window.open("index.html", "_self")
-            },
-            onCreate() {
-                console.log("F")
-                axios({
-                    method: 'get',
-                    url: 'http://localhost:5000/user',
-                })
-                    .then((response) => {
-                        console.log(response.data.values[0])
-                        this.email += response.data.values[0].Email
-                        this.phone += response.data.values[0].Phone
-                        this.address += response.data.Address[0].Address
-                    })
-                    .catch((error) => console.log(error))
-                console.log("S")
             },
             toOrder() {
                 window.open("productProgess.html", "_self")
@@ -162,6 +149,19 @@
 
                 })
                 event.preventDefault(); // 用來查看console.log
+            },
+            onCreate() {
+                axios({
+                    method: 'get',
+                    url: 'http://localhost:5000/user',
+                })
+                    .then((response) => {
+                        console.log(response.data.values[0])
+                        this.email += response.data.values[0].Email
+                        this.phone += response.data.values[0].Phone
+                        this.address += response.data.Address[0].Address
+                    })
+                    .catch((error) => console.log(error))
             }
         },
         mounted: function () {
