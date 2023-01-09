@@ -43,7 +43,7 @@
                     <div class="Title">
                         <div class="Lable">圖片</div>
                         <div class="Lable">商品</div>
-                        <div class="Lable">描述</div>
+                        <div class="Lable">客製商品描述</div>
                         <div class="Lable">單價</div>
                         <div class="Lable">數量</div>
                         <div class="Lable">總額</div>
@@ -53,7 +53,7 @@
                             <img :src="product.Image" alt="icon">
                         </div>
                         <div class="cartColumn">{{product.productName}}</div>
-                        <div class="cartColumn">{{product.Describe}}</div>
+                        <div class="cartColumn">{{product.Customize}}</div>
                         <div class="cartColumn">{{product.realPrice}}</div>
                         <div class="cartColumn"></label><input type='button' value='-' class='qtyminus'
                                 @click="decrease(product)" />
@@ -163,7 +163,7 @@
                         Order_date: today,
                         Quantity: element.Quantity,
                         Fee: element.realPrice * element.Quantity,
-                        Other_request: element.Describe,
+                        Other_request: element.Customize,
                     }})
                     .then((response) => {
                         
