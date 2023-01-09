@@ -20,25 +20,34 @@ mysql.init_app(app)
 CORS(app, resources={r'/*': {'origins': '*'}})
 
 # 註冊
-@app.route('/signUp', methods=['POST'])
+@app.route('/signUp', methods=['GET','POST'])
 def signUp():
     conn = mysql.connect()
     cursor = conn.cursor()
     try:
         data = request.get_json()
-        sql = ("INSERT INTO user (Name, Email, Account, Password, Role, Phone, Gender) VALUES (%s, %s, %s, %s, %s, %s, %s)")
-        val = (data['Name'], data['Email'], data['Account'], data['Password'], 'member', data['Phone'], data['Gender'])
-        cursor.execute(sql, val)
-        conn.commit()
-        cursor.execute("SELECT UID FROM user WHERE Account = %s", data['Account'])
-        userID = cursor.fetchall()
-        sql = ("INSERT INTO member (Member_ID, Address) VALUES (%s, %s)")
-        val = (userID, data['Address'])
-        cursor.execute(sql, val)
-        conn.commit()
-        return jsonify({
-            'status': 'success'
-        })
+        cursor.execute('SELECT Account, Password FROM user WHERE (Account = %s)', data['Account'])
+        user = cursor.fetchall()
+        if (user == ()):
+            sql = ("INSERT INTO user (Name, Email, Account, Password, Role, Phone, Gender) VALUES (%s, %s, %s, %s, %s, %s, %s)")
+            val = (data['Name'], data['Email'], data['Account'], data['Password'], 'member', data['Phone'], data['Gender'])
+            cursor.execute(sql, val)
+            conn.commit()
+            cursor.execute("SELECT UID FROM user WHERE Account = %s", data['Account'])
+            userID = cursor.fetchall()
+            sql = ("INSERT INTO member (Member_ID, Address) VALUES (%s, %s)")
+            val = (userID, data['Address'])
+            cursor.execute(sql, val)
+            conn.commit()
+            return jsonify({
+                'status': 'success',
+                'values': '註冊成功'
+            })
+        else:
+            return jsonify({
+                'status': 'success',
+                'values': '此帳號已被註冊'
+            })
     finally:
         cursor.close() 
         conn.close()
