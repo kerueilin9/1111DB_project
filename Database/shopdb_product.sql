@@ -30,7 +30,7 @@ CREATE TABLE `product` (
   `Describe` varchar(256) NOT NULL,
   `Quantity` int NOT NULL,
   `Price` int NOT NULL,
-  `Discount` int NOT NULL,
+  `Discount` decimal(3, 2) NOT NULL,
   `Discount_period` datetime DEFAULT NULL,
   PRIMARY KEY (`PID`),
   KEY `Manager_ID` (`Manager_ID`),
@@ -45,8 +45,8 @@ CREATE TABLE `product` (
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
 INSERT INTO `product` VALUES 
-(1,_binary 'image',1,'block','This is a square',5,1200,1,'2023-12-12 12:59:23'), 
-(2,_binary 'image',1,'red','This is a book',9,300,100,'0000-00-00 00:00:00'),
+(1,_binary 'image',1,'block','This is a square',5,1200,0.8,'2023-12-12 12:59:23'), 
+(2,_binary 'image',1,'red','This is a book',9,300,1,'0000-00-00 00:00:00'),
 (3,_binary 'image',1,'blue','This is a square',5,1200,1,'2023-12-12 12:59:23'),
 (4,_binary 'image',1,'green','This is a square',5,1200,1,'2023-12-12 12:59:23'),
 (5,_binary 'image',1,'yellow','This is a square',5,1200,1,'2023-12-12 12:59:23'),
