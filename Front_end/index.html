@@ -41,7 +41,7 @@
                         <input type="search" id="search" placeholder="Search..." v-model="searchText" />
                     </div>
                 </div>
-                <span class="iconCart"><img src="shopingCart.png" alt="icon"></span>
+                <span v-else-if="accountStatus != ''" class="iconCart"><img src="shopingCart.png" alt="icon"></span>
             </div>
         </header>
 
