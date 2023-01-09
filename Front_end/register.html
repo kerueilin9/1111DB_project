@@ -19,92 +19,93 @@
 </head>
 
 <body>
-
-    <header id="homeHeader" class="jumbotron">
-        <div class="headerContainer">
-            <div class="iconHome">
-                <img src="image.png" alt="icon">
+    <div id="app">
+        <header id="homeHeader" class="jumbotron">
+            <div class="headerContainer">
+                <div class="iconHome">
+                    <img src="image.png" alt="icon" @click="toMainPage()">
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <!-- section -->
-    <section class="py-4">
-        <div class="container" id="app">
-            <div class="text-center mb-4">
-                <h2 class="registerHeader">註冊帳號</h2>
-                <hr>
-                <form class="registerForm">
-                    <div class="inputDiv">
-                        <div class="inputBoxLabel">姓名
-                            <p class="necessaryInputLabel">*</p>
-                        </div>
-                        <input class="inputBox" type="text" v-model="name" ref="nameInput" autofocus required />
-                    </div>
-                    <div class="inputDiv">
-                        <div class="inputBoxLabel">帳號
-                            <p class="necessaryInputLabel">*</p>
-                        </div>
-                        <input class="inputBox" type="text" v-model="account" ref="accountInput" required />
-                    </div>
-                    <div class="inputDiv">
-                        <div class="inputBoxLabel">密碼
-                            <p class="necessaryInputLabel">*</p>
-                        </div>
-                        <input class="inputBox" type="password" v-model="password" ref="passwordInput" required />
-                    </div>
-                    <div class="inputDiv">
-                        <div class="inputBoxLabel">確認密碼
-                            <p class="necessaryInputLabel">*</p>
-                        </div>
-                        <input class="inputBox" type="password" v-model="confirmPassword" ref="confirmPasswordInput"
-                            required />
-                    </div>
-                    <div class="inputDiv">
-                        <div class="inputBoxLabel">電子郵件
-                            <p class="necessaryInputLabel">*</p>
-                        </div>
-                        <input class="inputBox" type="email" v-model="email" ref="mailInput" required />
-                    </div>
-                    <div class="inputDiv">
-                        <div class="inputBoxLabel">電話
-                            <p class="necessaryInputLabel">*</p>
-                        </div>
-                        <input class="inputBox" type="text" v-model="phone" ref="phoneInput" required />
-                    </div>
-                    <div class="inputDiv">
-                        <div class="inputBoxLabel">地址
-                            <p class="necessaryInputLabel">*</p>
-                        </div>
-                        <input class="inputBox" type="text" v-model="address" ref="addressInput" required />
-                    </div>
-                    <div class="inputDiv">
-                        <div class="radioInputLabel">性別</div>
-                        <fieldset class="radioInputDiv">
-                            <div class="">
-                                <input class="radioInput" type="radio" name="contact" id="male" value="male"
-                                    v-model="gender">
-                                <label class="radioInput" for="male">男</label>
-                                <input class="radioInput" type="radio" name="contact" id="female" value="female"
-                                    v-model="gender">
-                                <label class="radioInput" for="female">女</label>
-                                <input class="radioInput" type="radio" name="contact" id="none" value="none" checked>
-                                <label class="radioInput" for="none">不願透漏</label>
+        <!-- section -->
+        <section class="py-4">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="registerHeader">註冊帳號</h2>
+                    <hr>
+                    <form class="registerForm">
+                        <div class="inputDiv">
+                            <div class="inputBoxLabel">姓名
+                                <p class="necessaryInputLabel">*</p>
                             </div>
-                        </fieldset>
-                    </div>
-                    <div class="submitDiv">
-                        <button class="cancelButton" type="button" @click="onCancel()">取消註冊</button>
-                        <input class="submitButton" type="submit" value="註冊" @click="onSubmit()">
-                    </div>
-                </form>
+                            <input class="inputBox" type="text" v-model="name" ref="nameInput" autofocus required />
+                        </div>
+                        <div class="inputDiv">
+                            <div class="inputBoxLabel">帳號
+                                <p class="necessaryInputLabel">*</p>
+                            </div>
+                            <input class="inputBox" type="text" v-model="account" ref="accountInput" required />
+                        </div>
+                        <div class="inputDiv">
+                            <div class="inputBoxLabel">密碼
+                                <p class="necessaryInputLabel">*</p>
+                            </div>
+                            <input class="inputBox" type="password" v-model="password" ref="passwordInput" required />
+                        </div>
+                        <div class="inputDiv">
+                            <div class="inputBoxLabel">確認密碼
+                                <p class="necessaryInputLabel">*</p>
+                            </div>
+                            <input class="inputBox" type="password" v-model="confirmPassword" ref="confirmPasswordInput"
+                                required />
+                        </div>
+                        <div class="inputDiv">
+                            <div class="inputBoxLabel">電子郵件
+                                <p class="necessaryInputLabel">*</p>
+                            </div>
+                            <input class="inputBox" type="email" v-model="email" ref="mailInput" required />
+                        </div>
+                        <div class="inputDiv">
+                            <div class="inputBoxLabel">電話
+                                <p class="necessaryInputLabel">*</p>
+                            </div>
+                            <input class="inputBox" type="text" v-model="phone" ref="phoneInput" required />
+                        </div>
+                        <div class="inputDiv">
+                            <div class="inputBoxLabel">地址
+                                <p class="necessaryInputLabel">*</p>
+                            </div>
+                            <input class="inputBox" type="text" v-model="address" ref="addressInput" required />
+                        </div>
+                        <div class="inputDiv">
+                            <div class="radioInputLabel">性別</div>
+                            <fieldset class="radioInputDiv">
+                                <div class="">
+                                    <input class="radioInput" type="radio" name="contact" id="male" value="male"
+                                        v-model="gender">
+                                    <label class="radioInput" for="male">男</label>
+                                    <input class="radioInput" type="radio" name="contact" id="female" value="female"
+                                        v-model="gender">
+                                    <label class="radioInput" for="female">女</label>
+                                    <input class="radioInput" type="radio" name="contact" id="none" value="none"
+                                        checked>
+                                    <label class="radioInput" for="none">不願透漏</label>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="submitDiv">
+                            <button class="cancelButton" type="button" @click="cancel()">取消註冊</button>
+                            <input class="submitButton" type="submit" value="註冊" @click="onSubmit()">
+                        </div>
+                    </form>
 
+                </div>
             </div>
-        </div>
-    </section>
-    <!-- section end -->
+        </section>
+        <!-- section end -->
 
-
+    </div>
 </body>
 <script>
 </script>
@@ -137,7 +138,10 @@
             };
         },
         methods: {
-            onCancel() {
+            toMainPage() {
+                window.open("index.html", "_self")
+            },
+            cancel() {
                 window.open("index.html", "_self")
             },
             onSubmit() {
@@ -166,16 +170,16 @@
                             Gender: this.gender
                         }
                     }).then((response) => {
-                    var signUpResult = response.data.values
-                    if (signUpResult != '註冊成功')
-                        alert(response.data.values)
-                    else {
-                        alert('註冊成功')
-                        window.open("index.html", "_self")
-                    }
+                        var signUpResult = response.data.values
+                        if (signUpResult != '註冊成功')
+                            alert(response.data.values)
+                        else {
+                            alert('註冊成功')
+                            window.open("index.html", "_self")
+                        }
 
-                })
-                event.preventDefault(); // 用來查看console.log;
+                    })
+                    event.preventDefault(); // 用來查看console.log;
                 }
             }
         },

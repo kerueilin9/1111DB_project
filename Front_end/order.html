@@ -23,7 +23,7 @@
         <header id="homeHeader" class="jumbotron">
             <div class="container">
                 <div class="iconHome">
-                    <img src="image.png" alt="icon" @click="onMainPage()">
+                    <img src="image.png" alt="icon" @click="toMainPage()">
                 </div>
                 <span class="userImform"><a href="#" @click="onUserProfile()">User name</a></span>
             </div>
@@ -44,15 +44,15 @@
                     <input type='button' value='+' class='qtyplus' field='quantity' />
                     <div class="registerForm">
                         <p class="price" id="productPrice">
-                            <div v-if="product.Price !== product.realPrice">
-                                $<span class="text-danger">{{product.realPrice}}</span><s>{{product.Price}}</s>
-                                NTD
-                            </div>
-                            <div v-else>
-                                ${{product.Price}} NTD
-                            </div>
+                        <div v-if="product.Price !== product.realPrice">
+                            $<span class="text-danger">{{product.realPrice}}</span><s>{{product.Price}}</s>
+                            NTD
+                        </div>
+                        <div v-else>
+                            ${{product.Price}} NTD
+                        </div>
                         </p>
-                        <button type="Button">加入購物車</button>
+                        <button type="Button" @click="addToCart()">加入購物車</button>
                     </div>
                 </div>
                 <div class="productImformation">
@@ -96,7 +96,7 @@
         data: function () {
             return {
                 Image: '',
-                Type:'',
+                Type: '',
                 Quantity: '',
                 Price: '',
                 Describe: '',
@@ -105,8 +105,11 @@
             };
         },
         methods: {
-            onMainPage() {
+            toMainPage() {
                 window.open("index.html", "_self")
+            },
+            addToCart() {
+                window.open("shoppingCart.html", "_self")
             },
             onCreate() {
                 axios.get('http://localhost:5000/PID')
@@ -125,8 +128,8 @@
         },
     }).mount('#app');
 
-    $(function() {
-        $('.qtyplus').click(function(e) {
+    $(function () {
+        $('.qtyplus').click(function (e) {
             e.preventDefault();
             fieldName = $(this).attr('field');
             var currentVal = parseInt($('input[name=' + fieldName + ']').val());
@@ -136,7 +139,7 @@
                 $('input[name=' + fieldName + ']').val(0);
             }
         });
-        $(".qtyminus").click(function(e) {
+        $(".qtyminus").click(function (e) {
             e.preventDefault();
             fieldName = $(this).attr('field');
             var currentVal = parseInt($('input[name=' + fieldName + ']').val());

@@ -118,41 +118,49 @@
 }
 
 .submitDiv {
-    margin: auto;
-    margin-right: 215px;
-    width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    width: 700px;
+    display: flex;
+    justify-content: space-between;
     position: relative;
 }
 
 .submitButton {
-    position: absolute;
-    right: 0;
     padding: 10px 20px;
     border: 3px solid #ddd;
     color: rgb(255, 255, 255);
     background-color: #4CAF50;
-    width: 120px;
+    width: 150px;
     border-radius: 8px;
 }
 
 .cancelButton {
-    position: absolute;
-    left: 0;
     padding: 10px 20px;
     border: 3px solid rgb(245, 211, 211);
     color: rgb(255, 255, 255);
     background-color: #4CAF50;
-    width: 120px;
+    width: 150px;
     border-radius: 8px;
 }
+
+.editButton {
+    padding: 10px 20px;
+    border: 3px solid rgb(245, 211, 211);
+    color: rgb(255, 255, 255);
+    background-color: #fcb213;
+    width: 150px;
+    border-radius: 8px;
+}
+
 .logoutButton {
-    position: absolute;
-    left: 160px;
+    margin-top: 50px;
     padding: 10px 20px;
     border: 3px solid rgb(245, 211, 211);
     color: rgb(255, 255, 255);
     background-color: #ff0000;
-    width: 120px;
+    width: 240px;
     border-radius: 8px;
 }
 
