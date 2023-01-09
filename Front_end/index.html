@@ -27,9 +27,7 @@
                         <a data-toggle="modal" href="#signInModal">登入</a>
                     </div>
                     <div v-else-if="accountStatus != ''">
-                        <input class="userProfile" type="button" href="#" @click="onUserProfile()"
-                            v-model="userProfileLabel"></input>
-                        <a href="#" @click="onSignOut()">登出</a>
+                        <a href="#" @click="onUserProfile()">Welcome {{userProfileLabel}}</a>
                     </div>
                 </nav>
             </div>
@@ -60,8 +58,8 @@
                 </div>
                 <!-- productList -->
                 <div id="productList" class="row">
-                    <div class="col-md-4 col-6" @click="onOrder(product.PID)" id="product.PID" v-for="product in products"
-                        :key="productsKey">
+                    <div class="col-md-4 col-6" @click="onOrder(product.PID)" id="product.PID"
+                        v-for="product in products" :key="productsKey">
                         <div class="card my-3">
                             <img class="card-img-top" src="P_20220810_235241.jpg" alt="">
                             <div class="card-body">
@@ -195,27 +193,6 @@
             },
             onUserProfile() {
                 window.open("user.html", "_self")
-            },
-            onSignOut() {
-                axios({
-                    method: 'post',
-                    url: 'http://localhost:5000/signOut',
-                    data: {
-                        accountStatus: ''
-                    }
-                }).then((response) => {
-                    var signOutResult = response.data.values
-                    if (signOutResult != '登出成功')
-                        alert(response.data.values)
-                    else {
-                        alert('登出成功')
-                        this.accountStatus = response.data.UID;
-                        console.log('status ' + this.accountStatus)
-                        window.open("index.html", "_self")
-                    }
-
-                })
-                event.preventDefault(); // 用來查看console.log
             },
             onCreate() {
                 axios.get('http://localhost:5000/getAllProduct')
