@@ -242,8 +242,9 @@ def addToShoppingCart():
     try:
         data = request.get_json()
         global PID
-        val = (PID, data['Quantity'], data['Customize'])
-        cursor.execute("INSERT INTO shoppingcart (PID, Quantity, Customize) VALUES (%s, %s, %s)", val)
+        global UID
+        val = (PID, data['Quantity'], data['Customize'], UID)
+        cursor.execute("INSERT INTO shoppingcart (PID, Quantity, Customize, UID) VALUES (%s, %s, %s, %s)", val)
         conn.commit()
         shoppingCart = cursor.fetchall()
         return jsonify({
@@ -274,6 +275,11 @@ def getShoppingCart():
     finally:
         cursor.close()
         conn.close()
+
+#______________訂單(order SQL)______________
+@app.route('/getShoppingCart', methods=['GET'])
+def getOrder():
+    conn = mysql.connect()
 
 #______________換頁傳遞資訊______________
 # PID POST

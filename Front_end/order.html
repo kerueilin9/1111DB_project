@@ -49,9 +49,9 @@
                     <br>
                     <br>
                     數量&emsp;
-                    </label><input type='button' value='-' class='qtyminus' field='quantity' />
-                    <input type='text' name='quantity' value='1' class='qty' />
-                    <input type='button' value='+' class='qtyplus' field='quantity' />
+                    </label><input type='button' value='-' class='qtyminus' @click="decrease()" />
+                    <input type='text' name='quantity' v-model="Quantity" class='qty' />
+                    <input type='button' value='+' class='qtyplus' @click="increase()" />
                     <div class="registerForm">
                         <p class="price" id="productPrice">
                         <div v-if="product.Price !== product.realPrice">
@@ -140,7 +140,7 @@
                 signInPassword: '',
                 Image: '',
                 Type: '',
-                Quantity: '',
+                Quantity: 1,
                 Customize: '',
                 Price: '',
                 Describe: '',
@@ -152,13 +152,31 @@
             toMainPage() {
                 window.open("index.html", "_self")
             },
+            increase() {
+                this.Quantity += 1;
+            },
+            decrease() {
+                if (this.Quantity > 1)
+                    this.Quantity -= 1;
+                else
+                    this.Quantity = 1;
+            },
             addToCart() {
                 if (this.accountStatus == '') {
                     alert("請先登入帳號")
                 } else {
-
+                    axios({
+                        method: 'post',
+                        url: 'http://localhost:5000/addToShoppingCart',
+                        data: {
+                            Quantity: this.Quantity,
+                            Customize: this.Customize
+                        }
+                    }).then((response) => {
+                        alert(response.data.values)
+                        window.open("index.html", "_self")
+                    })
                 }
-
             },
             onRegister() {
                 window.open("register.html", "_self")
@@ -186,7 +204,7 @@
                         alert('登入成功')
                         this.accountStatus = response.data.UID;
                         console.log('status ' + this.accountStatus)
-                        window.open("index.html", "_self")
+                        window.open("order.html", "_self")
                     }
 
                 })
@@ -226,28 +244,7 @@
         },
     }).mount('#app');
 
-    $(function () {
-        $('.qtyplus').click(function (e) {
-            e.preventDefault();
-            fieldName = $(this).attr('field');
-            var currentVal = parseInt($('input[name=' + fieldName + ']').val());
-            if (!isNaN(currentVal)) {
-                $('input[name=' + fieldName + ']').val(currentVal + 1);
-            } else {
-                $('input[name=' + fieldName + ']').val(0);
-            }
-        });
-        $(".qtyminus").click(function (e) {
-            e.preventDefault();
-            fieldName = $(this).attr('field');
-            var currentVal = parseInt($('input[name=' + fieldName + ']').val());
-            if (!isNaN(currentVal) && currentVal > 1) {
-                $('input[name=' + fieldName + ']').val(currentVal - 1);
-            } else {
-                $('input[name=' + fieldName + ']').val(1);
-            }
-        });
-    });
+
 </script>
 
 </html>
