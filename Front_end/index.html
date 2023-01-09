@@ -41,7 +41,8 @@
                         <input type="search" id="search" placeholder="Search..." v-model="searchText" />
                     </div>
                 </div>
-                <span v-else-if="accountStatus != ''" class="iconCart"><img src="shopingCart.png" alt="icon"></span>
+                <span v-if="accountStatus != ''" class="iconCart" @click="toShoppingCart()"><img src="shopingCart.png"
+                        alt="icon"></span>
             </div>
         </header>
 
@@ -195,6 +196,9 @@
             },
             onUserProfile() {
                 window.open("user.html", "_self")
+            },
+            toShoppingCart() {
+                window.open("shoppingCart.html", "_self")
             },
             onCreate() {
                 axios.get('http://localhost:5000/getAllProduct')

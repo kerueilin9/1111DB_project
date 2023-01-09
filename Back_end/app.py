@@ -243,7 +243,7 @@ def addToShoppingCart():
         data = request.get_json()
         global PID
         val = (PID, data['Quantity'], data['Customize'])
-        cursor.execute("INSERT INTO user (PID, Quantity, Customize) VALUES (%s, %s, %s)", val)
+        cursor.execute("INSERT INTO shoppingcart (PID, Quantity, Customize) VALUES (%s, %s, %s)", val)
         conn.commit()
         shoppingCart = cursor.fetchall()
         return jsonify({
@@ -262,8 +262,8 @@ def getShoppingCart():
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
     try:
-        global PID
-        cursor.execute("SELECT * FROM shoppingCart WHERE PID = %s", PID)
+        global UID
+        cursor.execute("SELECT * FROM shoppingCart WHERE UID = %s", UID)
         shoppingCart = cursor.fetchall()
         return jsonify({
             'status' : 'success',

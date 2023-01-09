@@ -75,7 +75,7 @@
                     <div class="ImformationTitle">
                         客製商品描述
                     </div>
-                    <textarea name="message" rows="10"></textarea>
+                    <textarea name="message" rows="10" v-model="Customize"></textarea>
                 </div>
             </div>
 
@@ -141,6 +141,7 @@
                 Image: '',
                 Type: '',
                 Quantity: '',
+                Customize: '',
                 Price: '',
                 Describe: '',
                 productKey: 0,
@@ -152,7 +153,12 @@
                 window.open("index.html", "_self")
             },
             addToCart() {
-                window.open("shoppingCart.html", "_self")
+                if (this.accountStatus == '') {
+                    alert("請先登入帳號")
+                } else {
+
+                }
+
             },
             onRegister() {
                 window.open("register.html", "_self")
