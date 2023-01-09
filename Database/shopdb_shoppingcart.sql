@@ -27,6 +27,7 @@ CREATE TABLE `shoppingcart` (
   `PID` int NOT NULL,
   `Quantity` varchar(32) NOT NULL,
   `Customize` varchar(512) DEFAULT NULL,
+  `UID` int NOT NULL,
   PRIMARY KEY (`CID`),
   KEY `PID` (`PID`),
   CONSTRAINT `shoppingcart_ibfk_1` FOREIGN KEY (`PID`) REFERENCES `product` (`PID`) ON DELETE CASCADE
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-09 16:48:23
+-- Dump completed on 2023-01-09 20:51:25
