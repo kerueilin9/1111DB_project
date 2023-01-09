@@ -56,9 +56,7 @@
                         <hr>
                     </form>
                     <div class="submitDiv">
-                        <div v-if="">
-                            <button class="cancelButton" type="button" @click="toOrder()">訂單資訊</button>
-                        </div>
+                        <button class="cancelButton" type="button" @click="toOrder()">訂單資訊</button>
                         <button class="editButton" type="button" @click="editData()">更新資料</button>
                     </div>
                     <button class="logoutButton" type="button" @click="onSignOut()">登出</button>
@@ -101,7 +99,7 @@
                 window.open("index.html", "_self")
             },
             toOrder() {
-                window.open("productProgess.html", "_self")
+                window.open("userOrders.html", "_self")
             },
             toProject() {
                 window.open("productItem.html", "_self")
@@ -160,6 +158,8 @@
                         this.email += response.data.values[0].Email
                         this.phone += response.data.values[0].Phone
                         this.address += response.data.Address[0].Address
+                        this.userRole = response.data.values[0].Role
+                        console.log(this.userRole)
                     })
                     .catch((error) => console.log(error))
             }
