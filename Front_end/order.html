@@ -112,7 +112,7 @@
                 window.open("shoppingCart.html", "_self")
             },
             onCreate() {
-                axios.get('http://localhost:5000/PID')
+                axios.get('http://localhost:5000/getProduct')
                     .then((response) => {
                         this.product = response.data.values[0]
                         this.product.realPrice = this.product.Price * this.product.Discount;
