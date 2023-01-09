@@ -69,7 +69,7 @@
                         <div class="cartColumn">寄送地址</div>
                     </div>
                     <div class="InformationBox">
-                        <input type="text" value="" v-model="user.Address" ref="phoneInput" required>
+                        <input type="text" v-model="user.Address" ref="phoneInput" required>
                     </div>
                     <div class="totalFee" :key="totalPrice">
                         總金額：{{totalPrice}}
@@ -166,7 +166,11 @@
                         Other_request: element.Customize,
                     }})
                     .then((response) => {
-                        
+                        if (this.products.indexOf(element) == this.products.length - 1)
+                        {
+                            this.onCreate()
+                            alert("下單完成")
+                        }
                     })
                     .catch((error) => console.log(error))
                 })
@@ -179,7 +183,26 @@
                 if (product.Quantity > 1)
                     product.Quantity -= 1;
                 else
-                    product.Quantity = 1;
+                {
+                    product.Quantity = 0;
+                    if (confirm('確認刪除此商品') == true) 
+                    {
+                        axios({
+                            method: 'post',
+                            url: 'http://localhost:5000/deleteShoppingCart',
+                            data: {
+                                CID: product.CID,
+                            }})
+                            .then((response) => {
+                                this.onCreate();
+                            })
+                            .catch((error) => console.log(error))
+                    } 
+                    else
+                    {
+                        product.Quantity = 1;
+                    }
+                } 
                 this.totalPriceKey++;
             },
             OnProductQuantityChanged(product) {
