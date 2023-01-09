@@ -46,11 +46,11 @@ CREATE TABLE `product` (
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
 INSERT INTO `product` VALUES 
-(1,'image',1,'block','This is a square',5,1200,1.00,'0000-00-00 00:00:00','BLock'),
-(2,'P_20220810_235241.jpg',1,'block','This is a square',5,1200,1.00,'2023-01-01 01:01:01','square'),
-(4,'P_20220810_235241.jpg',1,'block','This is a circle',10,500,0.50,'2023-01-01 01:01:01','circle'),
-(5,'P_20220810_235241.jpg',1,'block','This is a triangle',10,200,0.80,'2023-01-01 01:01:02','triangle'),
-(6,'P_20220810_235241.jpg',1,'block','This is a rectangle',10,200,0.80,'2023-01-01 01:01:02','rectangle');
+(1,'./productImage/P_20220810_235241.jpg',1,'block','This is a square',5,1200,1.00,'0000-00-00 00:00:00','BLock'),
+(2,'./productImage/P_20220810_235241.jpg',1,'block','This is a square',5,1200,1.00,'2023-01-01 01:01:01','square'),
+(4,'./productImage/P_20220810_235241.jpg',1,'block','This is a circle',10,500,0.50,'2023-01-01 01:01:01','circle'),
+(5,'./productImage/P_20220810_235241.jpg',1,'block','This is a triangle',10,200,0.80,'2023-01-01 01:01:02','triangle'),
+(6,'./productImage/P_20220810_235241.jpg',1,'block','This is a rectangle',10,200,0.80,'2023-01-01 01:01:02','rectangle');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
