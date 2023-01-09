@@ -41,7 +41,7 @@
                     <div class="Title">
                         <div class="Lable">圖片</div>
                         <div class="Lable">商品</div>
-                        <div class="Lable">客製內容</div>
+                        <div class="Lable">描述</div>
                         <div class="Lable">單價</div>
                         <div class="Lable">數量</div>
                         <div class="Lable">總額</div>
@@ -51,12 +51,12 @@
                             <img :src="product.Image" alt="icon">
                         </div>
                         <div class="cartColumn">{{product.productName}}</div>
-                        <div class="cartColumn">客製內容</div>
-                        <div class="cartColumn">{{product.Price}}</div>
+                        <div class="cartColumn">{{product.Describe}}</div>
+                        <div class="cartColumn">{{product.realPrice}}</div>
                         <div class="cartColumn"></label><input type='button' value='-' class='qtyminus'
-                                field='quantity' /><input type='text' name='quantity' value='1' class='qty' /><input
+                                field='quantity' /><input type='text' name='quantity' :value='product.Quantity' class='qty' /><input
                                 type='button' value='+' class='qtyplus' field='quantity' /></div>
-                        <div class="cartColumn">{{product.productName}}</div>
+                        <div class="cartColumn">{{product.realPrice * product.Quantity}}</div>
                     </div>
                 </div>
                 <div class="deliveryDetail">
