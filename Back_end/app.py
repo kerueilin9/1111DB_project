@@ -331,6 +331,17 @@ def getOrderByUser():
             'values' : order
         })
 
+@app.route('/getAllOrder', methods=['GET'])
+def getAllOrder():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+    cursor.execute("SELECT Member_ID AS UID, product.Image AS Image, productName AS `Name`, Other_request AS Other, Price, `order`.Quantity AS Quantity FROM `order` INNER JOIN product USING(PID);")
+    order = cursor.fetchall()
+    return jsonify({
+            'status' : 'success',
+            'values' : order
+        })
+
 #______________換頁傳遞資訊______________
 # PID POST
 @app.route('/PID/<int:pid>', methods=['POST'])

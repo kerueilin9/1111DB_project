@@ -52,7 +52,7 @@
                         <div class="cartColumn">
                             <img :src="order.Image" alt="icon">
                         </div>
-                        <div class="cartColumn">{{order.ProductName}}</div>
+                        <div class="cartColumn">{{order.Name}}</div>
                         <div class="cartColumn">{{order.Other}}</div>
                         <div class="cartColumn">{{order.Price}}</div>
                         <div class="cartColumn">{{order.Quantity}}</div>
@@ -106,8 +106,21 @@
             onShow() {
                 if (this.userRole == 'member') {
                     alert('member')
+                    axios.get('http://localhost:5000/getAllOrderByUser')
+                        .then((response) => {
+                            console.log(response)
+                            this.orders = response.data.values
+                        })
+                        .catch((error) => console.log(error))
+
                 } else {
                     alert('employee/manager')
+                    axios.get('http://localhost:5000/getAllOrder')
+                        .then((response) => {
+                            console.log(response)
+                            this.orders = response.data.values
+                        })
+                        .catch((error) => console.log(error))
                 }
             },
             onCreate() {
