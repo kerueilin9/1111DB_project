@@ -321,6 +321,16 @@ def shoppingCartAddOrder():
 @app.route('/getAllOrder', methods=['GET'])
 def getOrder():
     conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+    cursor.execute("SELECT * FROM order WHERE Manager_ID = %s", UID)
+    order = cursor.fetchall()
+    cursor.execute("SELECT Address FROM member WHERE Manager_ID = %s", UID)
+    address = cursor.fetchall()
+    return jsonify({
+            'status' : 'success',
+            'values' : order,
+            'address': address
+        })
 
 #______________換頁傳遞資訊______________
 # PID POST
