@@ -154,9 +154,11 @@ def modifyUser():
     try:
         data = request.get_json()
         global UID
-        cursor.execute("UPDATE user SET Email= %s, Phone= %s  WHERE UID = %s", data['Email'], data['Phone'], UID)
+        val = (data['Email'], data['Phone'], UID)
+        cursor.execute("UPDATE user SET Email= %s, Phone= %s  WHERE UID = %s", val)
         conn.commit()
-        cursor.execute("UPDATE member SET Address= %s WHERE Member_ID = %s",data['Address'], UID)
+        val = (data['Address'], UID)
+        cursor.execute("UPDATE member SET Address= %s WHERE Member_ID = %s",val)
         conn.commit()
         Address = cursor.fetchall()
         return jsonify({
