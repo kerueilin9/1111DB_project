@@ -165,9 +165,17 @@
                             Address: this.address,
                             Gender: this.gender
                         }
-                    });
-                    window.open("index.html", "_self")
-                    alert('註冊成功')
+                    }).then((response) => {
+                    var signUpResult = response.data.values
+                    if (signUpResult != '註冊成功')
+                        alert(response.data.values)
+                    else {
+                        alert('註冊成功')
+                        window.open("index.html", "_self")
+                    }
+
+                })
+                event.preventDefault(); // 用來查看console.log;
                 }
             }
         },
