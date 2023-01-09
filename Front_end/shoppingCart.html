@@ -69,7 +69,7 @@
                         <div class="cartColumn">寄送地址</div>
                     </div>
                     <div class="InformationBox">
-                        <input type="text" value="" v-model="user.Address" ref="phoneInput" required>
+                        <input type="text" value="" v-model="address" ref="phoneInput" required>
                     </div>
                     <div class="totalFee" :key="totalPrice">
                         總金額：{{totalPrice}}
@@ -108,7 +108,7 @@
                 signInPassword: '',
                 productsKey: 0,
                 products: [],
-                user: {},
+                address: '',
                 totalPriceKey: 0,
                 totalPrice: 0,
             };
@@ -143,12 +143,6 @@
                                 })
                                 .catch((error) => console.log(error))
                         }
-                    })
-                    .catch((error) => console.log(error))
-                axios.get('http://localhost:5000/user')
-                    .then((response) => {
-                        this.user = response.data.values[0]
-                        this.user.Address = response.data.Address[0].Address
                     })
                     .catch((error) => console.log(error))
             },

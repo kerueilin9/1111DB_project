@@ -36,6 +36,8 @@
                 <div class="iconHome">
                     <img src="image.png" alt="icon" @click="toMainPage()">
                 </div>
+                <span v-if="accountStatus != ''" class="iconCart" @click="toShoppingCart()"><img src="shopingCart.png"
+                    alt="icon"></span>
             </div>
         </header>
 
