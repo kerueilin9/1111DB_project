@@ -14,7 +14,7 @@
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <!-- basic.css -->
     <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/shopingCart.css">
+    <link rel="stylesheet" href="css/shoppingCart.css">
     <!-- <link rel="stylesheet" href="./stylesheets/style.css"> -->
 </head>
 
@@ -26,7 +26,9 @@
                 <div class="iconHome">
                     <img src="image.png" alt="icon" @click="toMainPage()">
                 </div>
-                <span class="userImform"><a href="#" @click="onUserProfile()">User name</a></span>
+                <nav>
+                    <a href="#" @click="onUserProfile()">Welcome {{userProfileLabel}}</a>
+                </nav>
             </div>
         </header>
 
@@ -54,8 +56,11 @@
                         <div class="cartColumn">{{product.Describe}}</div>
                         <div class="cartColumn">{{product.realPrice}}</div>
                         <div class="cartColumn"></label><input type='button' value='-' class='qtyminus'
-                                field='quantity' /><input type='text' name='quantity' :value='product.Quantity' class='qty' /><input
-                                type='button' value='+' class='qtyplus' field='quantity' /></div>
+                                @click="decrease(product)" />
+                            <input type='text' name='quantity' @change="OnProductQuantityChanged(product)"
+                                v-model="product.Quantity" class='qty' />
+                            <input type='button' value='+' class='qtyplus' @click="increase(product)" />
+                        </div>
                         <div class="cartColumn">{{product.realPrice * product.Quantity}}</div>
                     </div>
                 </div>
@@ -64,10 +69,10 @@
                         <div class="cartColumn">寄送地址</div>
                     </div>
                     <div class="InformationBox">
-                        <input type="text" value="" v-model="address" ref="phoneInput" required>
+                        <input type="text" value="" v-model="user.Address" ref="phoneInput" required>
                     </div>
-                    <div class="totalFee">
-                        總金額：
+                    <div class="totalFee" :key="totalPrice">
+                        總金額：{{totalPrice}}
                     </div>
                 </div>
                 <input class="submitButton" type="submit" value="確認下單" @click="onSubmit()">
@@ -103,53 +108,77 @@
                 signInPassword: '',
                 productsKey: 0,
                 products: [],
-                address: '',
+                user: {},
+                totalPriceKey: 0,
+                totalPrice: 0,
             };
         },
         methods: {
             toMainPage() {
                 window.open("index.html", "_self")
             },
+            onUserProfile() {
+                window.open("user.html", "_self")
+            },
             onCreate() {
                 axios.get('http://localhost:5000/getShoppingCart')
                     .then((response) => {
                         this.products = response.data.values
                         this.products.forEach(element => {
+                            element.Quantity = parseInt(element.Quantity)
                             element.realPrice = element.Price * element.Discount;
                         });
                         this.productsKey++
+                        this.totalPriceKey++;
                         console.log(this.products)
                     })
                     .catch((error) => console.log(error))
+                axios.get('http://localhost:5000/UID')
+                    .then((response) => {
+                        this.accountStatus = response.data.UID;
+                        if (response.data.UID != 0) {
+                            axios.get('http://localhost:5000/user')
+                                .then((response) => {
+                                    this.userProfileLabel = response.data.values[0].Name
+                                })
+                                .catch((error) => console.log(error))
+                        }
+                    })
+                    .catch((error) => console.log(error))
+                axios.get('http://localhost:5000/user')
+                    .then((response) => {
+                        this.user = response.data.values[0]
+                        this.user.Address = response.data.Address[0].Address
+                    })
+                    .catch((error) => console.log(error))
+            },
+            increase(product) {
+                product.Quantity += 1;
+                this.totalPriceKey++;
+            },
+            decrease(product) {
+                if (product.Quantity > 1)
+                    product.Quantity -= 1;
+                else
+                    product.Quantity = 1;
+                this.totalPriceKey++;
+            },
+            OnProductQuantityChanged(product) {
+                this.totalPriceKey++;
+            },
+        },
+        watch: {
+            totalPriceKey: function (newValue, oldValue) {
+                this.totalPrice = 0
+                this.products.forEach(element => {
+                    this.totalPrice += element.realPrice * element.Quantity;
+                });
             }
         },
         mounted: function () {
             this.onCreate();
         },
     }).mount('#app');
-
-    $(function () {
-        $('.qtyplus').click(function (e) {
-            e.preventDefault();
-            fieldName = $(this).attr('field');
-            var currentVal = parseInt($('input[name=' + fieldName + ']').val());
-            if (!isNaN(currentVal)) {
-                $('input[name=' + fieldName + ']').val(currentVal + 1);
-            } else {
-                $('input[name=' + fieldName + ']').val(0);
-            }
-        });
-        $(".qtyminus").click(function (e) {
-            e.preventDefault();
-            fieldName = $(this).attr('field');
-            var currentVal = parseInt($('input[name=' + fieldName + ']').val());
-            if (!isNaN(currentVal) && currentVal > 0) {
-                $('input[name=' + fieldName + ']').val(currentVal - 1);
-            } else {
-                $('input[name=' + fieldName + ']').val(0);
-            }
-        });
-    });
 </script>
 
 </html>

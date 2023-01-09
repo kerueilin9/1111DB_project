@@ -2,25 +2,26 @@
     display: inline;
 }
 
-.iconHome img{
-    width: 100px; 
+
+.iconHome img {
+    width: 100px;
 }
 
-.userImform{
+.userImform {
     justify-content: right;
     font-size: 20px;
 }
 
-.userImform a{
+.userImform a {
     color: rgb(160, 155, 3);
 }
 
-.userImform a:hover{
+.userImform a:hover {
     color: rgb(214, 207, 72);
     text-decoration: none;
 }
 
-.container {  
+.container {
     display: flex;
     justify-content: space-between;
     max-width: 100%;
@@ -69,10 +70,10 @@
     text-align: center;
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     white-space: normal;
     word-wrap: break-word;
-    word-break:break-all;
+    word-break: break-all;
 }
 
 .InformationBox {
@@ -118,7 +119,7 @@ img {
     border-top: 1px solid #aaa;
     border-bottom: 1px solid #aaa;
 }
-  
+
 input.qtyplus {
     width: 25px;
     height: 35px;
@@ -132,6 +133,7 @@ input.qtyminus {
     border: 1px solid #aaa;
     background: #f8f8f8;
 }
+
 /* #endregion 數量*/
 
 .submitButton {
