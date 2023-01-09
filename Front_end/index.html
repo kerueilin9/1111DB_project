@@ -27,7 +27,8 @@
                         <a data-toggle="modal" href="#signInModal">登入</a>
                     </div>
                     <div v-else-if="accountStatus != ''">
-                        <input style type="button" href="#" @click="onUserProfile()" v-model="userProfileLabel"></input>
+                        <input class="userProfile" type="button" href="#" @click="onUserProfile()"
+                            v-model="userProfileLabel"></input>
                         <a href="#" @click="onSignOut()">登出</a>
                     </div>
 
