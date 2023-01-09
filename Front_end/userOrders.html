@@ -52,10 +52,10 @@
                         <div class="cartColumn">
                             <img :src="order.Image" alt="icon">
                         </div>
-                        <div class="cartColumn">商品1</div>
-                        <div class="cartColumn">客製內容1</div>
-                        <div class="cartColumn">單價1</div>
-                        <div class="cartColumn">數量1</div>
+                        <div class="cartColumn">{{order.ProductName}}</div>
+                        <div class="cartColumn">{{order.Other}}</div>
+                        <div class="cartColumn">{{order.Price}}</div>
+                        <div class="cartColumn">{{order.Quantity}}</div>
                         <div class="cartColumn"><input class="submitButton" type="submit" value="查看"
                                 @click="onSubmit()"></div>
                     </div>

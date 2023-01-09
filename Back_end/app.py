@@ -320,18 +320,15 @@ def shoppingCartAddOrder():
         conn.close()
 
 #______________訂單(order SQL)______________
-@app.route('/getAllOrder', methods=['GET'])
-def getOrder():
+@app.route('/getAllOrderByUser', methods=['GET'])
+def getOrderByUser():
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
-    cursor.execute("SELECT * FROM order WHERE Manager_ID = %s", UID)
+    cursor.execute("SELECT product.Image AS Image, productName AS `Name`, Other_request AS Other, Price, `order`.Quantity AS Quantity FROM `order` INNER JOIN product USING(PID) WHERE Member_ID = %s;", UID)
     order = cursor.fetchall()
-    cursor.execute("SELECT Address FROM member WHERE Manager_ID = %s", UID)
-    address = cursor.fetchall()
     return jsonify({
             'status' : 'success',
-            'values' : order,
-            'address': address
+            'values' : order
         })
 
 #______________換頁傳遞資訊______________
@@ -381,9 +378,9 @@ def editProduct():
         data = request.get_json()
         global PID
         val = (data['name'], data['image'], data['price'],
-               data['discount'], data['discountPeriod'], data['describe'], PID)
+               data['discount'], data['describe'], PID)
         cursor.execute(
-            "UPDATE product SET productName= %s, Image= %s, Price= %s, Discount= %s, Discount_period= DATE(%s), `Describe`= %s WHERE PID = %s", val)
+            "UPDATE product SET productName= %s, Image= %s, Price= %s, Discount= %s, `Describe`= %s WHERE PID = %s", val)
         
         conn.commit()
         return jsonify({
