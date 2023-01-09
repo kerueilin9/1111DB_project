@@ -115,15 +115,17 @@
                 window.open("index.html", "_self")
             },
             onSubmit() {
+
+                this.discountPeriod
                 axios({
                     method: 'post',
-                    url: 'http://localhost:5000/????',
+                    url: 'http://localhost:5000/editProduct',
                     data: {
                         name: this.name,
                         image: this.image,
                         price: this.price,
                         discount: this.discount,
-                        discountPeriod: this.discount_Period,
+                        discountPeriod: this.discountPeriod,
                         describe: this.describe
                     }
                 }).then((response) => {

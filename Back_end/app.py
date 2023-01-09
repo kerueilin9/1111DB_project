@@ -336,5 +336,31 @@ def signOut():
         'UID': UID
     })
 
+# ____________編輯商品____________
+
+# 編輯商品
+
+@app.route('/editProduct', methods=['POST'])
+def editProduct():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+    try:
+        data = request.get_json()
+        global PID
+        val = (data['name'], data['image'], data['price'],
+               data['discount'], data['discountPeriod'], data['describe'], PID)
+        cursor.execute(
+            "UPDATE product SET productName= %s, Image= %s, Price= %s, Discount= %s, Discount_period= DATE(%s), `Describe`= %s WHERE PID = %s", val)
+        
+        conn.commit()
+        return jsonify({
+            'status': 'success',
+            'values': '編輯成功'
+        })
+    finally:
+        cursor.close()
+        conn.close()
+
 if __name__ == '__main__':
     app.run()
