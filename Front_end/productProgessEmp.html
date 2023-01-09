@@ -35,46 +35,10 @@
                 <hr>
                 <form class="registerForm">
                     <div class="inputDiv">
-                        <div class="inputBoxLabel">推斷
+                        <div class="inputBoxLabel">目前進度
                             <p class="necessaryInputLabel"></p>
                         </div>
                         <input class="inputBox" type="text" v-model="P1" autofocus required />
-                    </div>
-                    <div class="inputDiv">
-                        <div class="inputBoxLabel">材料訂製
-                            <p class="necessaryInputLabel"></p>
-                        </div>
-                        <input class="inputBox" type="text" v-model="P2" required />
-                    </div>
-                    <div class="inputDiv">
-                        <div class="inputBoxLabel">繪圖
-                            <p class="necessaryInputLabel"></p>
-                        </div>
-                        <input class="inputBox" type="password" v-model="P3" required />
-                    </div>
-                    <div class="inputDiv">
-                        <div class="inputBoxLabel">製作
-                            <p class="necessaryInputLabel"></p>
-                        </div>
-                        <input class="inputBox" type="password" v-model="P4" required />
-                    </div>
-                    <div class="inputDiv">
-                        <div class="inputBoxLabel">測試
-                            <p class="necessaryInputLabel"></p>
-                        </div>
-                        <input class="inputBox" type="email" v-model="P5" required />
-                    </div>
-                    <div class="inputDiv">
-                        <div class="inputBoxLabel">電話
-                            <p class="necessaryInputLabel"></p>
-                        </div>
-                        <input class="inputBox" type="text" v-model="P6" required />
-                    </div>
-                    <div class="inputDiv">
-                        <div class="inputBoxLabel">運送
-                            <p class="necessaryInputLabel"></p>
-                        </div>
-                        <input class="inputBox" type="text" v-model="P7" required />
                     </div>
                     <hr>
                     <div class="submitDiv">
@@ -110,13 +74,7 @@
     Vue.createApp({
         data: function () {
             return {
-                P1: '',
-                P2: '',
-                P3: '',
-                P4: '',
-                P5: '',
-                P6: '',
-                P7: '',
+                P1: ''
                 };
         },
         methods: {
