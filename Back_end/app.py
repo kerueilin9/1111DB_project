@@ -264,7 +264,7 @@ def getShoppingCart():
     cursor = conn.cursor(pymysql.cursors.DictCursor)
     try:
         global UID
-        cursor.execute("SELECT * FROM shoppingCart WHERE UID = %s", UID)
+        cursor.execute("SELECT `Image`, `productName`, `Quantity`, `Customize`, `Price`, `Discount` FROM shoppingCart AS S, user AS U WHERE U.UID = %s AND U.UID = S.UID", UID)
         shoppingCart = cursor.fetchall()
         return jsonify({
             'status' : 'success',
