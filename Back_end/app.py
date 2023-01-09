@@ -145,6 +145,26 @@ def getUser():
         cursor.close() 
         conn.close()
 
+#取得身分
+@app.route('/getRole', methods=['GET'])
+def getRole():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+    try:
+        global UID
+        cursor.execute("SELECT Role FROM user WHERE UID = %s", UID)
+        role = cursor.fetchall()
+        return jsonify({
+            'status': 'success',
+            'values': role
+        })
+    # except Exception as e:
+    #     print(e)
+    finally:
+        cursor.close() 
+        conn.close()
+
 #修改使用者資料
 @app.route('/modifyUser', methods=['GET', 'POST'])
 def modifyUser():
