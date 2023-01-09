@@ -36,7 +36,7 @@ CREATE TABLE `product` (
   PRIMARY KEY (`PID`),
   KEY `Manager_ID` (`Manager_ID`),
   CONSTRAINT `product_ibfk_1` FOREIGN KEY (`Manager_ID`) REFERENCES `manager` (`Manager_ID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,12 +45,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES 
-(1,'./productImage/P_20220810_235241.jpg',1,'block','This is a square',5,1200,1.00,'0000-00-00 00:00:00','BLock'),
-(2,'./productImage/test.jpg',1,'block','This is a square',5,1200,1.00,'2023-01-01 01:01:01','square'),
-(4,'./productImage/circle.jpg',1,'block','This is a circle',10,500,0.50,'2023-01-01 01:01:01','circle'),
-(5,'./productImage/triangle.jpg',1,'block','This is a triangle',10,200,0.80,'2023-01-01 01:01:02','triangle'),
-(6,'./productImage/test.jpg',1,'block','This is a rectangle',10,200,0.80,'2023-01-01 01:01:02','rectangle');
+INSERT INTO `product` VALUES (8,'P_20220810_235241.jpg',9,'block','This is a circle',10,200,0.80,'2023-01-01 01:01:02','Square'),(9,'P_20220810_235241.jpg',9,'block','This is a circle',10,100,0.90,'2023-01-01 01:01:03','Circle'),(10,'P_20220810_235241.jpg',9,'Cable','This is a cable',10,50,1.00,'2023-01-01 01:01:04','Cable'),(11,'P_20220810_235241.jpg',9,'Phone','This is a phone',10,1000,0.50,'2023-01-01 01:01:05','Phone');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -63,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-09 16:30:49
+-- Dump completed on 2023-01-09 21:02:00
