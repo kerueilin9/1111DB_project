@@ -39,25 +39,25 @@
                             <div class="inputBoxLabel">電子郵件
                                 <p class="necessaryInputLabel">*</p>
                             </div>
-                            <input class="inputBox" type="email" readonly="readonly" v-model="email" required />
+                            <input class="inputBox" type="email" v-model="email" required />
                         </div>
                         <div class="inputDiv">
                             <div class="inputBoxLabel">電話
                                 <p class="necessaryInputLabel">*</p>
                             </div>
-                            <input class="inputBox" type="text" readonly="readonly" v-model="phone" required />
+                            <input class="inputBox" type="text" v-model="phone" required />
                         </div>
                         <div class="inputDiv">
                             <div class="inputBoxLabel">地址
                                 <p class="necessaryInputLabel">*</p>
                             </div>
-                            <input class="inputBox" type="text" readonly="readonly" v-model="address" required />
+                            <input class="inputBox" type="text" v-model="address" required />
                         </div>
                         <hr>
                     </form>
                     <div class="submitDiv">
                         <button class="cancelButton" type="button" @click="toOrder()">訂單資訊</button>
-                        <button class="editButton" type="button" @click="toProject()">修改資料</button>
+                        <button class="editButton" type="button" @click="editData()">修改資料</button>
                         <button class="submitButton" type="button" @click="toProject()">專案資訊</button>
                     </div>
                     <button class="logoutButton" type="button" @click="toMainPage()">登出</button>
@@ -123,9 +123,10 @@
                 window.open("index.html", "_self")
             },
             editData() {
+                console.log(this.phone)
                 axios({
                         method: 'post',
-                        url: 'http://localhost:5000/editData',
+                        url: 'http://localhost:5000/modifyUser',
                         data: {
                             Email: this.email,
                             Phone: this.phone,
