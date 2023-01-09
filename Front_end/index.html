@@ -61,7 +61,7 @@
                     <div class="col-md-4 col-6" @click="onOrder(product.PID)" id="product.PID"
                         v-for="product in currentProducts" :key="productsKey">
                         <div class="card my-3">
-                            <img class="card-img-top" src="P_20220810_235241.jpg" alt="">
+                            <img class="card-img-top" :src="product.Image" alt="">
                             <div class="card-body">
                                 <h4 class="card-title mb-0">{{product.productName}}</h4>
                                 <div class="category-list my-2">
