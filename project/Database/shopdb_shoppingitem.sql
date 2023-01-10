@@ -31,7 +31,7 @@ CREATE TABLE `shoppingitem` (
   PRIMARY KEY (`CID`),
   KEY `PID` (`PID`),
   CONSTRAINT `shoppingItem_ibfk_1` FOREIGN KEY (`PID`) REFERENCES `product` (`PID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `shoppingitem` (
 
 LOCK TABLES `shoppingitem` WRITE;
 /*!40000 ALTER TABLE `shoppingitem` DISABLE KEYS */;
+INSERT INTO `shoppingitem` VALUES (7,8,'1','mem1 add star',7),(8,11,'2','mem1 add slash',7),(9,8,'2','mem3 no flower',11),(10,11,'1','mem3 no eyes',11),(11,10,'1','mem3 made by wood',11);
 /*!40000 ALTER TABLE `shoppingitem` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-10 20:44:31
+-- Dump completed on 2023-01-10 21:47:22

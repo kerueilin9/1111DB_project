@@ -36,7 +36,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (7,'Taipei'),(8,'New Taipei'),(9,'Company of customized');
+INSERT INTO `member` VALUES (7,'Taipei'),(8,'New Taipei'),(9,'Company of customized'),(10,'China'),(11,'Lanyu');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-10 20:44:31
+-- Dump completed on 2023-01-10 21:47:22

@@ -41,7 +41,7 @@ CREATE TABLE `order` (
   CONSTRAINT `order_ibfk_1` FOREIGN KEY (`PID`) REFERENCES `product` (`PID`) ON DELETE CASCADE,
   CONSTRAINT `order_ibfk_2` FOREIGN KEY (`Manager_ID`) REFERENCES `manager` (`Manager_ID`) ON DELETE CASCADE,
   CONSTRAINT `order_ibfk_3` FOREIGN KEY (`Member_ID`) REFERENCES `member` (`Member_ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,6 +50,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
+INSERT INTO `order` VALUES (1,8,9,7,'2023-01-10 21:40:18',1,'剛剛成立','貨到付款','貨到付款',70,'mem1 black thin'),(2,11,9,7,'2023-01-10 21:40:18',2,'製作中','貨到付款','貨到付款',100,'mem1 white'),(3,9,9,7,'2023-01-10 21:40:18',2,'剛剛成立','貨到付款','貨到付款',180,'mem1 green fat'),(4,9,9,10,'2023-01-10 21:41:17',1,'剛剛成立','貨到付款','貨到付款',90,'mem2 black'),(5,9,9,11,'2023-01-10 21:42:35',6,'製作中','貨到付款','貨到付款',540,'mem3 blue thin'),(6,8,9,11,'2023-01-10 21:42:35',2,'已完成','貨到付款','貨到付款',140,'mem3 orange');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -62,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-10 20:44:31
+-- Dump completed on 2023-01-10 21:47:22

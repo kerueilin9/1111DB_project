@@ -32,7 +32,7 @@ CREATE TABLE `user` (
   `Phone` varchar(16) NOT NULL,
   `Gender` varchar(16) NOT NULL,
   PRIMARY KEY (`UID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (7,'mem1','mem1@gmail.com','mem1','mem1','member','090001','male'),(8,'emp1','emp1@gmail.com','emp1','emp1','employee','090101','female'),(9,'man01','man01@gmail.com','man01','man01','manager','090201','none');
+INSERT INTO `user` VALUES (7,'mem1','mem1@gmail.com','mem1','mem1','member','090001','male'),(8,'emp1','emp1@gmail.com','emp1','emp1','employee','090101','female'),(9,'man01','man01@gmail.com','man01','man01','manager','090201','none'),(10,'mem2','mem2@gmail.com','mem2','mem2','member','09445213','male'),(11,'mem3','mem3@gmail.com','mem3','mem3','member','091234678','female');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-10 20:44:31
+-- Dump completed on 2023-01-10 21:47:22
