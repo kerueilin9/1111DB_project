@@ -36,7 +36,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (7,'Taipei'),(8,'New Taipei'),(9,'Taipei');
+INSERT INTO `member` VALUES (7,'Taipei'),(8,'New Taipei'),(9,'Company of customized');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

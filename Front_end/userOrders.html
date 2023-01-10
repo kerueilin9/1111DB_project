@@ -36,7 +36,7 @@
         <div class="py-4">
             <div class="containerOrder">
                 <div class="text-center mb-4 productHeader">
-                    <h2>用戶訂單</h2>
+                    <h2>{{title}}</h2>
                     <hr>
                 </div>
                 <div class="shopingCartItems">
@@ -57,7 +57,7 @@
                         <div class="cartColumn">{{order.Price}}</div>
                         <div class="cartColumn">{{order.Quantity}}</div>
                         <div class="cartColumn"><input class="submitButton" type="submit" value="查看"
-                                @click="onSubmit()"></div>
+                                @click="onStatusClick(order.OID)"></div>
                     </div>
                 </div>
             </div>
@@ -93,7 +93,8 @@
                 accountStatus: '',
                 ordersKey: 0,
                 orders: [],
-                userRole: ''
+                userRole: '',
+                title: '載入中...'
             };
         },
         methods: {
@@ -105,20 +106,18 @@
             },
             onShow() {
                 if (this.userRole == 'member') {
-                    alert('member')
                     axios.get('http://localhost:5000/getAllOrderByUser')
                         .then((response) => {
-                            console.log(response)
                             this.orders = response.data.values
+                            this.title = '您的訂單'
                         })
                         .catch((error) => console.log(error))
 
                 } else {
-                    alert('employee/manager')
                     axios.get('http://localhost:5000/getAllOrder')
                         .then((response) => {
-                            console.log(response)
                             this.orders = response.data.values
+                            this.title = '所有使用者訂單'
                         })
                         .catch((error) => console.log(error))
                 }

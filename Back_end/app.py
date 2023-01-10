@@ -133,7 +133,7 @@ def getUser():
         cursor.execute("SELECT * FROM user WHERE UID = %s", UID)
         user = cursor.fetchall()
         cursor.execute("SELECT Address FROM member WHERE Member_ID = %s", UID)
-        Address = cursor.fetchall()[0]['Address']
+        Address = cursor.fetchall()
         return jsonify({
             'status': 'success',
             'values': user,

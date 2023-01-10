@@ -157,7 +157,7 @@
                         console.log(response.data.values[0])
                         this.email += response.data.values[0].Email
                         this.phone += response.data.values[0].Phone
-                        this.address += response.data.Address[0].Address
+                        this.address = response.data.Address[0].Address
                         this.userRole = response.data.values[0].Role
                         console.log(this.userRole)
                     })
