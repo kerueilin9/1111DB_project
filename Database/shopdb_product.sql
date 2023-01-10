@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: shopdb
+-- Host: localhost    Database: shopdb
 -- ------------------------------------------------------
 -- Server version	8.0.31
 
@@ -45,7 +45,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (8,'.\\productImage\\circle.jpg',9,'block','A circle by 3D printer',10,200,0.80,'2023-05-01 01:01:02','Circle'),(9,'.\\productImage\\heart.jpg',9,'block','Heart by 3D printer',10,100,0.90,'2023-05-01 01:01:03','Heart'),(10,'.\\productImage\\test.jpg',9,'Cable','This is a cable',10,50,1.00,'2023-05-01 01:01:04','Cable'),(11,'.\\productImage\\triangle.jpg',9,'Phone','By 3D printer',10,1000,0.50,'2023-05-11 01:01:05','Mystery triangle'),(12,'.\\productImage\\rabit.jpg',9,'Model','By 3D printer',10,600,1.00,'2023-05-20 13:50:00','Rabbit');
+INSERT INTO `product` VALUES (8,'.\\productImage\\vase.jpg',9,'vase','5cm*5cm*10cm',10,100,0.70,'2023-01-01 01:01:02','杯子'),(9,'.\\productImage\\vase 2.jpg',9,'vase','8cm*8cm*15cm',10,100,0.90,'2023-01-01 01:01:03','花瓶'),(10,'.\\productImage\\tower.jpg',9,'tower','8cm*8cm*20cm',10,500,1.00,'2023-01-01 01:01:04','艾菲爾鐵塔'),(11,'.\\productImage\\rabit.jpg',9,'animals','5cm*5cm*9cm',10,100,0.50,'2023-01-01 01:01:05','兔子公仔');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-09 21:46:24
+-- Dump completed on 2023-01-10 11:14:50
