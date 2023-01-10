@@ -20,10 +20,10 @@ Import from Dump Project Folder 欄位
 資料庫就建好了 !
 
 要執行網頁前 需先執行 \Back_end\app.py
-> pip install flask
-> pip install flask_cors
-> pip install Flask-MySQL==1.5.2
-> pip install pymysql
+> pip install flask  
+> pip install flask_cors  
+> pip install Flask-MySQL==1.5.2  
+> pip install pymysql  
 > python .\Back_end\app.py
 
 最後開啟index.html即可開始使用系統
