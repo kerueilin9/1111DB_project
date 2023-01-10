@@ -16,29 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `department`
+-- Table structure for table `shoppingcart`
 --
 
-DROP TABLE IF EXISTS `department`;
+DROP TABLE IF EXISTS `shoppingcart`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `department` (
-  `Name` varchar(16) NOT NULL,
-  `Manager_ID` int NOT NULL,
-  PRIMARY KEY (`Name`),
-  KEY `Manager_ID` (`Manager_ID`),
-  CONSTRAINT `department_ibfk_1` FOREIGN KEY (`Manager_ID`) REFERENCES `manager` (`Manager_ID`) ON DELETE CASCADE
+CREATE TABLE `shoppingcart` (
+  `CID` int NOT NULL AUTO_INCREMENT,
+  `PID` int NOT NULL,
+  `Quantity` varchar(32) NOT NULL,
+  `Customize` varchar(512) DEFAULT NULL,
+  `UID` int NOT NULL,
+  PRIMARY KEY (`CID`),
+  KEY `PID` (`PID`),
+  CONSTRAINT `shoppingcart_ibfk_1` FOREIGN KEY (`PID`) REFERENCES `product` (`PID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `department`
+-- Dumping data for table `shoppingcart`
 --
 
-LOCK TABLES `department` WRITE;
-/*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES ('Product',9);
-/*!40000 ALTER TABLE `department` ENABLE KEYS */;
+LOCK TABLES `shoppingcart` WRITE;
+/*!40000 ALTER TABLE `shoppingcart` DISABLE KEYS */;
+/*!40000 ALTER TABLE `shoppingcart` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

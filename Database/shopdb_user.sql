@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: localhost    Database: shopdb
+-- Host: 127.0.0.1    Database: shopdb
 -- ------------------------------------------------------
 -- Server version	8.0.31
 
@@ -32,7 +32,7 @@ CREATE TABLE `user` (
   `Phone` varchar(16) NOT NULL,
   `Gender` varchar(16) NOT NULL,
   PRIMARY KEY (`UID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Tom','Tom0001@gmail.com','Tom0001','Tom0001','member','0900000000','F'),(2,'An','An0002@gmail.com','An0002','An0002','member','0900000001','M'),(3,'aaa','aaa@gmail.com','aaa','aaa','member','0900000002','M'),(4,'bbb','bbb@gmail.com','b','b','member','0900000003','M'),(5,'ccc','c@gmail.com','c','c','member','0900000004','F');
+INSERT INTO `user` VALUES (7,'mem1','mem1@gmail.com','mem1','mem1','member','090001','male'),(8,'emp1','emp1@gmail.com','emp1','emp1','employee','090101','female'),(9,'man01','man01@gmail.com','man01','man01','manager','090201','none');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-08 17:58:47
+-- Dump completed on 2023-01-09 21:02:00

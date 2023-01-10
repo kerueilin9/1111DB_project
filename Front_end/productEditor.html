@@ -14,7 +14,7 @@
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <!-- basic.css -->
     <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/user.css">
+    <link rel="stylesheet" href="css/register.css">
     <!-- <link rel="stylesheet" href="./stylesheets/style.css"> -->
 </head>
 
@@ -32,42 +32,54 @@
         <section class="py-4">
             <div class="container">
                 <div class="text-center mb-4">
-                    <h2 class="registerHeader">使用者資訊</h2>
+                    <h2 class="registerHeader">編輯商品</h2>
                     <hr>
                     <form class="registerForm">
                         <div class="inputDiv">
-                            <div class="inputBoxLabel">電子郵件
-                                <p class="necessaryInputLabel">*</p>
+                            <div class="inputBoxLabel">專案名稱
                             </div>
-                            <input class="inputBox" type="email" v-model="email" required />
+                            <input class="inputBox" type="text" v-model="name" ref="nameInput" required />
                         </div>
                         <div class="inputDiv">
-                            <div class="inputBoxLabel">電話
-                                <p class="necessaryInputLabel">*</p>
+                            <div class="inputBoxLabel">圖片
                             </div>
-                            <input class="inputBox" type="text" v-model="phone" required />
+                            <input class="inputBox" type="text" v-model="image" ref="imageInput" autofocus required />
                         </div>
                         <div class="inputDiv">
-                            <div class="inputBoxLabel">地址
-                                <p class="necessaryInputLabel">*</p>
+                            <div class="inputBoxLabel">價格
                             </div>
-                            <input class="inputBox" type="text" v-model="address" required />
+                            <input class="inputBox" type="text" v-model="price" ref="priceInput" required />
                         </div>
-                        <hr>
+                        <div class="inputDiv">
+                            <div class="inputBoxLabel">折扣
+                            </div>
+                            <input class="inputBox" type="text" v-model="discount" ref="discountInput" required />
+                        </div>
+                        <div class="inputDiv">
+                            <div class="inputBoxLabel">折扣日期
+                            </div>
+                            <input class="inputBox" type="text" v-model="discountPeriod" ref="discountPeriodInput"
+                                required />
+                        </div>
+                        <div class="inputDiv">
+                            <div class="inputBoxLabel">描述
+                            </div>
+                            <input class="inputBox" type="text" v-model="describe" ref="drscribeInput" required />
+                        </div>
+                        <div class="submitDiv">
+                            <button class="cancelButton" type="button" @click="cancel()">取消編輯</button>
+                            <input class="submitButton" type="submit" value="提交" @click="onSubmit()">
+                        </div>
                     </form>
-                    <div class="submitDiv">
-                        <button class="cancelButton" type="button" @click="toOrder()">訂單資訊</button>
-                        <button class="editButton" type="button" @click="editData()">更新資料</button>
-                    </div>
-                    <button class="logoutButton" type="button" @click="onSignOut()">登出</button>
+
                 </div>
             </div>
         </section>
         <!-- section end -->
+
     </div>
 </body>
 <script>
-
 </script>
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -80,7 +92,6 @@
     integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
     crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <!-- Vue.js -->
 <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue@next"></script>
@@ -88,84 +99,65 @@
     Vue.createApp({
         data: function () {
             return {
-                email: '',
-                phone: '',
-                address: '',
-                userRole: ''
+                name: '',
+                image: '',
+                price: '',
+                discount: '',
+                discountPeriod: '',
+                describe: '',
             };
         },
         methods: {
             toMainPage() {
                 window.open("index.html", "_self")
             },
-            toOrder() {
-                window.open("userOrders.html", "_self")
-            },
-            toProject() {
-                window.open("productItem.html", "_self")
-            },
-            toMainPage() {
+            cancel() {
                 window.open("index.html", "_self")
             },
-            editData() {
-                console.log(this.phone)
+            onSubmit() {
+
+                this.discountPeriod
                 axios({
                     method: 'post',
-                    url: 'http://localhost:5000/modifyUser',
+                    url: 'http://localhost:5000/editProduct',
                     data: {
-                        Email: this.email,
-                        Phone: this.phone,
-                        Address: this.address
+                        name: this.name,
+                        image: this.image,
+                        price: this.price,
+                        discount: this.discount,
+                        discountPeriod: this.discountPeriod,
+                        describe: this.describe
                     }
                 }).then((response) => {
-                    var editResult = response.data.values
-                    if (editResult != '修改成功')
+                    var signUpResult = response.data.values
+                    if (signUpResult != '編輯成功')
                         alert(response.data.values)
                     else {
-                        alert('修改成功')
-                        location.reload()
-                    }
-                })
-            },
-            onSignOut() {
-                axios({
-                    method: 'post',
-                    url: 'http://localhost:5000/signOut',
-                    data: {
-                        accountStatus: ''
-                    }
-                }).then((response) => {
-                    var signOutResult = response.data.values
-                    if (signOutResult != '登出成功')
-                        alert(response.data.values)
-                    else {
-                        alert('登出成功')
-                        this.accountStatus = response.data.UID;
-                        console.log('status ' + this.accountStatus)
+                        alert('編輯成功')
                         window.open("index.html", "_self")
                     }
-
                 })
-                event.preventDefault(); // 用來查看console.log
+                event.preventDefault(); // 用來查看console.log;
             },
             onCreate() {
-                axios({
-                    method: 'get',
-                    url: 'http://localhost:5000/user',
-                })
+                axios.get('http://localhost:5000/getProduct')
                     .then((response) => {
-                        console.log(response.data.values[0])
-                        this.email += response.data.values[0].Email
-                        this.phone += response.data.values[0].Phone
-                        this.address += response.data.Address[0].Address
-                        this.userRole = response.data.values[0].Role
-                        console.log(this.userRole)
+                        this.product = response.data.values[0]
+                        this.name = this.product.productName;
+                        this.image = this.product.Image;
+                        this.price = this.product.Price;
+                        this.discount = this.product.Discount;
+                        this.discountPeriod = this.product.Discount_period;
+                        this.describe = this.product.Describe;
+
+                        console.log(response)
+                        console.log(this.product)
                     })
                     .catch((error) => console.log(error))
-            }
+            },
         },
         mounted: function () {
-            this.onCreate();
+            this.onCreate()
         },
     }).mount('#app');
 </script>

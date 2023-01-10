@@ -21,11 +21,23 @@
 <body>
     <div id="app">
         <header id="homeHeader" class="jumbotron">
+            <div class="header">
+                <nav>
+                    <div v-if="accountStatus == ''">
+                        <a href="#" @click="onRegister()">註冊</a>
+                        <a data-toggle="modal" href="#signInModal">登入</a>
+                    </div>
+                    <div v-else-if="accountStatus != ''">
+                        <a href="#" @click="onUserProfile()">Welcome {{userProfileLabel}}</a>
+                    </div>
+                </nav>
+            </div>
             <div class="container">
                 <div class="iconHome">
-                    <img src="image.png" alt="icon" @click="onMainPage()">
+                    <img src="image.png" alt="icon" @click="toMainPage()">
                 </div>
-                <span class="userImform"><a href="#" @click="onUserProfile()">User name</a></span>
+                <span v-if="accountStatus != ''" class="iconCart" @click="toShoppingCart()"><img src="shopingCart.png"
+                    alt="icon"></span>
             </div>
         </header>
 
@@ -33,18 +45,26 @@
         <div class="py-4">
             <div class="containerOrder">
                 <div class="text-center mb-4 productHeader">
-                    <h2 id="productName">{{product.Name}}</h2>
+                    <h2 id="productName">{{product.productName}}</h2>
                     <hr>
-                    <img src='P_20220810_235241.jpg' id="productImage" width="400" height="400" alt="">
+                    <img :src="product.Image" id="productImage" width="400" height="400" alt="">
                     <br>
                     <br>
                     數量&emsp;
-                    </label><input type='button' value='-' class='qtyminus' field='quantity' />
-                    <input type='text' name='quantity' value='1' class='qty' />
-                    <input type='button' value='+' class='qtyplus' field='quantity' />
+                    </label><input type='button' value='-' class='qtyminus' @click="decrease()" />
+                    <input type='text' name='quantity' v-model="Quantity" class='qty' />
+                    <input type='button' value='+' class='qtyplus' @click="increase()" />
                     <div class="registerForm">
-                        <p class="price" id="productPrice">${{product.realPrice}}</p>
-                        <button type="Button">加入購物車</button>
+                        <p class="price" id="productPrice">
+                        <div v-if="product.Price !== product.realPrice">
+                            $<span class="text-danger">{{product.realPrice}}</span><s>{{product.Price}}</s>
+                            NTD
+                        </div>
+                        <div v-else>
+                            ${{product.Price}} NTD
+                        </div>
+                        </p>
+                        <button type="Button" @click="addToCart()">加入購物車</button>
                     </div>
                 </div>
                 <div class="productImformation">
@@ -57,17 +77,46 @@
                     <div class="ImformationTitle">
                         客製商品描述
                     </div>
-                    <textarea name="message" rows="10"></textarea>
+                    <textarea name="message" rows="10" v-model="Customize"></textarea>
                 </div>
             </div>
 
         </div>
         <!-- section end -->
-
+        <!-- signInModal -->
+        <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form id="signInForm" class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">登入</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="signInEmail">帳號</label>
+                            <input id="signInEmail" type="text" class="form-control" placeholder="輸入帳號"
+                                v-model="signInAccount" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signInPassword">密碼</label>
+                            <input id="signInPassword" type="password" class="form-control" placeholder="輸入密碼"
+                                v-model="signInPassword" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary" @click="onSignIn()">登入</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
 </body>
-<script>
-</script>
+
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- popper.js -->
@@ -87,9 +136,14 @@
     Vue.createApp({
         data: function () {
             return {
+                userProfileLabel: '',
+                accountStatus: '',
+                signInAccount: '',
+                signInPassword: '',
                 Image: '',
-                Type:'',
-                Quantity: '',
+                Type: '',
+                Quantity: 1,
+                Customize: '',
                 Price: '',
                 Describe: '',
                 productKey: 0,
@@ -97,17 +151,95 @@
             };
         },
         methods: {
-            onMainPage() {
+            toMainPage() {
                 window.open("index.html", "_self")
             },
+            increase() {
+                this.Quantity += 1;
+            },
+            decrease() {
+                if (this.Quantity > 1)
+                    this.Quantity -= 1;
+                else
+                    this.Quantity = 1;
+            },
+            addToCart() {
+                if (this.accountStatus == '') {
+                    alert("請先登入帳號")
+                } else {
+                    axios({
+                        method: 'post',
+                        url: 'http://localhost:5000/addToShoppingCart',
+                        data: {
+                            Quantity: this.Quantity,
+                            Customize: this.Customize
+                        }
+                    }).then((response) => {
+                        alert(response.data.values)
+                        window.open("index.html", "_self")
+                    })
+                }
+            },
+            onRegister() {
+                window.open("register.html", "_self")
+            },
+            onUserProfile() {
+                window.open("user.html", "_self")
+            },
+            toShoppingCart() {
+                window.open("shoppingCart.html", "_self")
+            },
+            onSignIn() {
+                if (this.signInAccount == '' || this.signInPassword == '') {
+                    alert('帳號或密碼不得為空值')
+                    return
+                }
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:5000/signIn',
+                    data: {
+                        Account: this.signInAccount,
+                        Password: this.signInPassword
+                    }
+                }).then((response) => {
+                    var signInResult = response.data.values
+                    if (signInResult != '登入成功')
+                        alert(response.data.values)
+                    else {
+                        alert('登入成功')
+                        this.accountStatus = response.data.UID;
+                        console.log('status ' + this.accountStatus)
+                        window.open("order.html", "_self")
+                    }
+
+                })
+                event.preventDefault(); // 用來查看console.log
+            },
             onCreate() {
-                axios.get('http://localhost:5000/PID')
+                axios.get('http://localhost:5000/getProduct')
                     .then((response) => {
-                        this.product = response.data.members[0]
+                        this.product = response.data.values[0]
                         this.product.realPrice = this.product.Price * this.product.Discount;
                         this.productsKey++
                         console.log(response)
                         console.log(this.product)
+                    })
+                    .catch((error) => console.log(error))
+                axios.get('http://localhost:5000/UID')
+                    .then((response) => {
+                        this.accountStatus = response.data.UID;
+                        if (response.data.UID != 0) {
+                            axios.get('http://localhost:5000/user')
+                                .then((response) => {
+                                    console.log(response)
+                                    users = response.data.values
+                                    users.forEach(user => {
+                                        this.userProfileLabel = user.Name;
+                                    })
+
+                                })
+                                .catch((error) => console.log(error))
+                        }
                     })
                     .catch((error) => console.log(error))
             },
@@ -117,28 +249,7 @@
         },
     }).mount('#app');
 
-    $(function() {
-        $('.qtyplus').click(function(e) {
-            e.preventDefault();
-            fieldName = $(this).attr('field');
-            var currentVal = parseInt($('input[name=' + fieldName + ']').val());
-            if (!isNaN(currentVal)) {
-                $('input[name=' + fieldName + ']').val(currentVal + 1);
-            } else {
-                $('input[name=' + fieldName + ']').val(0);
-            }
-        });
-        $(".qtyminus").click(function(e) {
-            e.preventDefault();
-            fieldName = $(this).attr('field');
-            var currentVal = parseInt($('input[name=' + fieldName + ']').val());
-            if (!isNaN(currentVal) && currentVal > 1) {
-                $('input[name=' + fieldName + ']').val(currentVal - 1);
-            } else {
-                $('input[name=' + fieldName + ']').val(1);
-            }
-        });
-    });
+
 </script>
 
 </html>

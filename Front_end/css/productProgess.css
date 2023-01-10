@@ -1,72 +1,98 @@
-#homeHeader .container {  
+.registerHeader {
+    margin-top: 70px;
+}
+
+.headerContainer {  
     display: flex;
     justify-content: space-between;
     max-width: 100%;
     padding: 10px;
 }
 
-.userImform{
-    justify-content: right;
-    font-size: 20px;
-}
-
-.userImform a{
-    color: rgb(160, 155, 3);
-}
-
-.userImform a:hover{
-    color: rgb(214, 207, 72);
-    text-decoration: none;
-}
-
-.iconHome {
-    display: inline;
-}
-
 .iconHome img{
     width: 100px; 
 }
 
-.containerProgress {
-    margin-top: 70px;
+.inputDiv {
+    margin: auto;
+    margin-top: 20px;
+    width: 700px;
+    position: relative;
 }
 
-.label {
-    margin-top: 8px;
-    margin-left: 8px;
-    color: #879bae;
+.inputBoxLabel {
+    margin-top: 10px;
+    display: inline;
+    position: absolute;
+    left: 0;
+    font-size: 16pt;
+    font-weight: 400;
 }
 
-.header h5{
-    color: rgb(214, 207, 72);
+.inputBox {
+    width: 580px;
+    height: 50px;
+    color: #63717f;
+    margin-left: 100px;
+    font-size: 22px;
+    padding-left: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    right: 0;
 }
-/* navEND */
-/* 使用者資訊 */
-.card-img-top {
-    width: 496px;
-    height: 350px;
-}
-.box {
-    margin-left: auto;
-    margin-right: auto;
-    width: 500px;
-    margin-top: 45px;
-    border-style: solid;
-}
-.Delete{
-    margin-left: auto;
-        margin-right: auto;
-        width: 85px;
-        margin-top: 45px;
-        border-style: solid;
-}
-/* 使用者資訊END */
-/* 搜索框 */
 
-/* 搜索框END */
+.radioInputLabel {
+    display: inline;
+    position: absolute;
+    left: 0;
+    font-size: 16pt;
+    font-weight: 400;
+}
 
-@media (min-width: 576px){
-    /* .jumbotron {
-        padding: 1rem 2rem 1rem 2rem;
-    } */
+.radioInputDiv {
+    width: 580px;
+    height: 50px;
+    margin-right: 250px;
+    font-size: 16pt;
+    display: inline;
+    margin-left: -11%;
+}
+
+.radioInput {
+    margin-left: 5px;
+}
+
+.necessaryInputLabel {
+    display: inline;
+    color: red;
+}
+
+.submitDiv {
+    margin: auto;
+    margin-right: 215px;
+    width: 580px;
+    position: relative;
+}
+
+.submitButton {
+    position: absolute;
+    right: 0;
+    padding: 10px 20px;
+    border: 3px solid #ddd;
+    color: rgb(255, 255, 255);
+    background-color: #4CAF50;
+    width: 120px;
+    border-radius: 8px;
+}
+
+.cancelButton {
+    position: absolute;
+    left: 0;
+    padding: 10px 20px;
+    border: 3px solid rgb(245, 211, 211);
+    color: rgb(255, 255, 255);
+    background-color: rgb(242, 0, 0);
+    width: 120px;
+    border-radius: 8px;
 }

@@ -28,39 +28,25 @@
     </header>
 
     <!-- section -->
-    <section class="py-4">
-        <div class="containerProgress">
+    <section class="py-4" id="app">
+        <div class="container">
             <div class="text-center mb-4">
-                <h2 class="text-center">User Information</h2>
+                <h2 class="registerHeader">專案進度</h2>
                 <hr>
+                <form class="registerForm">
+                    <div class="inputDiv">
+                        <div class="inputBoxLabel">目前進度
+                            <p class="necessaryInputLabel"></p>
+                        </div>
+                        <input class="inputBox" type="text" readonly="readonly" v-model="P1" ref="nameInput" autofocus required />
+                    </div>
+                    <hr>
+                    <div class="submitDiv">
+                        <button class="cancelButton" type="button" @click="toMainPage()">回到首頁</button>
+                    </div>
+                </form>
+
             </div>
-            <div id="userList" class="column">
-                <div class="box">
-                <img class="card-img-top" src="P_20220810_235241.jpg" alt="">
-                </div>
-                <div class="box">
-                    <text type="text" id="progess1" class="text-center" v-model="progess1">推測:</text>
-                </div>
-                <div class="box">
-                    <text type="text" id="progess2" class="text-center" v-model="progess2">材料訂製:</text>
-                </div>
-                <div class="box">
-                    <text type="text" id="progess3" class="text-center" v-model="progess3">繪圖:</text>
-                </div>
-                <div class="box">
-                    <text type="text" id="progess4" class="text-center" v-model="progess4">製作:</text>
-                </div>
-                <div class="box">
-                    <text type="text" id="progess5" class="text-center" v-model="progess5">測試:</text>
-                </div>
-                <div class="box">
-                    <text type="text" id="progess6" class="text-center" v-model="progess6">運送:</text>
-                </div>
-                <div class="Delete">
-                    <button type="text" id="Delete" class="logout">刪除商品</button>
-                </div>
-            </div>
-            <!-- productList -->
         </div>
     </section>
     <!-- section end -->
@@ -81,4 +67,25 @@
     crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<!-- Vue.js -->
+<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+    Vue.createApp({
+        data: function () {
+            return {
+                P1: ''
+                };
+        },
+        methods: {
+            toMainPage() {
+                window.open("index.html", "_self")
+            }
+        },
+        mounted: function () {
+
+        },
+    }).mount('#app');
+</script>
+
 </html>
