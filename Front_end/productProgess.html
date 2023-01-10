@@ -48,7 +48,8 @@
                         </div>
                         <hr>
                         <div class="submitDiv">
-                            <button class="cancelButton" type="button" @click="toUserOrders()">回到訂單</button>
+                            <button class="cancelButton" type="button" @click="toUserOrders()">返回訂單</button>
+                            <button class="editButton" type="button" @click="editStatus()">更新進度</button>
                         </div>
                     </form>
 
@@ -80,11 +81,15 @@
     Vue.createApp({
         data: function () {
             return {
+                userProfileLabel: '',
                 OID: '',
                 status: ''
             };
         },
         methods: {
+            toMainPage() {
+                window.open("index.html", "_self")
+            },
             toUserOrders() {
                 window.open("userOrders.html", "_self")
             },
@@ -92,6 +97,11 @@
                 window.open("user.html", "_self")
             },
             onCreate() {
+                axios.get('http://localhost:5000/user')
+                    .then((response) => {
+                        this.userProfileLabel = response.data.values[0].Name
+                    })
+                    .catch((error) => console.log(error))
                 axios.get('http://localhost:5000/getOrderStatusByOID')
                     .then((response) => {
                         this.status = response.data.values[0].Status
