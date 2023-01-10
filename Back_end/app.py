@@ -235,8 +235,8 @@ def getProduct():
 #______________購物車______________
 
 #加入購物車
-@app.route('/addToShoppingCart', methods=['POST'])
-def addToShoppingCart():
+@app.route('/addToShoppingItem', methods=['POST'])
+def addToShoppingItem():
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
 
@@ -245,9 +245,9 @@ def addToShoppingCart():
         global PID
         global UID
         val = (PID, data['Quantity'], data['Customize'], UID)
-        cursor.execute("INSERT INTO shoppingcart (PID, Quantity, Customize, UID) VALUES (%s, %s, %s, %s)", val)
+        cursor.execute("INSERT INTO shoppingItem (PID, Quantity, Customize, UID) VALUES (%s, %s, %s, %s)", val)
         conn.commit()
-        shoppingCart = cursor.fetchall()
+        shoppingItem = cursor.fetchall()
         return jsonify({
             'status' : 'success',
             'values' : '已加入購物車'
@@ -259,17 +259,17 @@ def addToShoppingCart():
         conn.close()
 
 #進入購物車
-@app.route('/getShoppingCart', methods=['GET'])
-def getShoppingCart():
+@app.route('/getShoppingItem', methods=['GET'])
+def getShoppingItem():
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
     try:
         global UID
-        cursor.execute("SELECT * FROM shoppingCart AS S, product AS P WHERE S.UID = %s AND P.PID = S.PID", UID)
-        shoppingCart = cursor.fetchall()
+        cursor.execute("SELECT * FROM shoppingItem AS S, product AS P WHERE S.UID = %s AND P.PID = S.PID", UID)
+        shoppingItem = cursor.fetchall()
         return jsonify({
             'status' : 'success',
-            'values' : shoppingCart
+            'values' : shoppingItem
         })
     # except Exception as e:
     #     print(e)
@@ -278,15 +278,15 @@ def getShoppingCart():
         conn.close()
 
 #刪除購物車
-@app.route('/deleteShoppingCart', methods=['POST'])
-def deleteShoppingCart():
+@app.route('/deleteShoppingItem', methods=['POST'])
+def deleteShoppingItem():
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
     try:
         data = request.get_json()
         global UID
         val = (UID, data['CID'])
-        cursor.execute("DELETE FROM shoppingCart AS S WHERE S.UID = %s AND S.CID = %s", val)
+        cursor.execute("DELETE FROM shoppingItem AS S WHERE S.UID = %s AND S.CID = %s", val)
         conn.commit()
         return jsonify({
             'status' : 'success',
@@ -298,8 +298,8 @@ def deleteShoppingCart():
         cursor.close()
         conn.close()
 
-@app.route('/shoppingCartAddOrder', methods=['POST'])
-def shoppingCartAddOrder():
+@app.route('/shoppingItemAddOrder', methods=['POST'])
+def shoppingItemAddOrder():
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
     try:
@@ -308,7 +308,7 @@ def shoppingCartAddOrder():
         val = (data['PID'], 9, UID, data['Order_date'], data['Quantity'], '剛剛成立', '貨到付款', '貨到付款', data['Fee'], data['Other_request'])
         cursor.execute("INSERT INTO `order` (PID, Manager_ID, Member_ID, Order_date, Quantity, Status, Payment_method, Delivery_method, Fee, Other_request) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", val)
         conn.commit()
-        cursor.execute("DELETE FROM `shoppingCart`")
+        cursor.execute("DELETE FROM `shoppingItem`")
         conn.commit()
         return jsonify({
             'status' : 'success',

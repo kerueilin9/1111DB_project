@@ -121,7 +121,7 @@
                 window.open("user.html", "_self")
             },
             onCreate() {
-                axios.get('http://localhost:5000/getShoppingCart')
+                axios.get('http://localhost:5000/getShoppingItem')
                     .then((response) => {
                         this.products = response.data.values
                         this.products.forEach(element => {
@@ -156,7 +156,7 @@
                     let today = moment().format('YYYY/MM/DD HH:mm:ss')
                     axios({
                         method: 'post',
-                        url: 'http://localhost:5000/shoppingCartAddOrder',
+                        url: 'http://localhost:5000/shoppingItemAddOrder',
                         data: {
                             PID: element.PID,
                             Order_date: today,
@@ -186,7 +186,7 @@
                     if (confirm('確認刪除此商品') == true) {
                         axios({
                             method: 'post',
-                            url: 'http://localhost:5000/deleteShoppingCart',
+                            url: 'http://localhost:5000/deleteShoppingItem',
                             data: {
                                 CID: product.CID,
                             }
