@@ -195,7 +195,7 @@
                         })
                         .catch((error) => console.log(error))
                 } else if (this.userRole == 'employee') {
-                    alert('')
+
                 } else {
                     axios.post(`http://localhost:5000/PID/${pid}`)
                         .then((response) => {
@@ -208,7 +208,11 @@
                 window.open("user.html", "_self")
             },
             toShoppingCart() {
-                window.open("shoppingCart.html", "_self")
+                if (this.userRole == 'employee') {
+
+                } else {
+                    window.open("shoppingCart.html", "_self")
+                }
             },
             onCreate() {
                 axios.get('http://localhost:5000/getAllProduct')
