@@ -37,7 +37,7 @@
                     <img src="image.png" alt="icon" @click="toMainPage()">
                 </div>
                 <span v-if="accountStatus != ''" class="iconCart" @click="toShoppingCart()"><img src="shopingCart.png"
-                    alt="icon"></span>
+                        alt="icon"></span>
             </div>
         </header>
 
@@ -208,7 +208,6 @@
                     else {
                         alert('登入成功')
                         this.accountStatus = response.data.UID;
-                        console.log('status ' + this.accountStatus)
                         window.open("order.html", "_self")
                     }
 
@@ -221,8 +220,6 @@
                         this.product = response.data.values[0]
                         this.product.realPrice = this.product.Price * this.product.Discount;
                         this.productsKey++
-                        console.log(response)
-                        console.log(this.product)
                     })
                     .catch((error) => console.log(error))
                 axios.get('http://localhost:5000/UID')

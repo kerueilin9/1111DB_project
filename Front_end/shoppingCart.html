@@ -130,7 +130,6 @@
                         });
                         this.productsKey++
                         this.totalPriceKey++;
-                        console.log(this.products)
                     })
                     .catch((error) => console.log(error))
                 axios.get('http://localhost:5000/UID')
@@ -156,23 +155,23 @@
                 this.products.forEach(element => {
                     let today = moment().format('YYYY/MM/DD HH:mm:ss')
                     axios({
-                    method: 'post',
-                    url: 'http://localhost:5000/shoppingCartAddOrder',
-                    data: {
-                        PID: element.PID,
-                        Order_date: today,
-                        Quantity: element.Quantity,
-                        Fee: element.realPrice * element.Quantity,
-                        Other_request: element.Customize,
-                    }})
-                    .then((response) => {
-                        if (this.products.indexOf(element) == this.products.length - 1)
-                        {
-                            this.onCreate()
-                            alert("下單完成")
+                        method: 'post',
+                        url: 'http://localhost:5000/shoppingCartAddOrder',
+                        data: {
+                            PID: element.PID,
+                            Order_date: today,
+                            Quantity: element.Quantity,
+                            Fee: element.realPrice * element.Quantity,
+                            Other_request: element.Customize,
                         }
                     })
-                    .catch((error) => console.log(error))
+                        .then((response) => {
+                            if (this.products.indexOf(element) == this.products.length - 1) {
+                                this.onCreate()
+                                alert("下單完成")
+                            }
+                        })
+                        .catch((error) => console.log(error))
                 })
             },
             increase(product) {
@@ -182,27 +181,25 @@
             decrease(product) {
                 if (product.Quantity > 1)
                     product.Quantity -= 1;
-                else
-                {
+                else {
                     product.Quantity = 0;
-                    if (confirm('確認刪除此商品') == true) 
-                    {
+                    if (confirm('確認刪除此商品') == true) {
                         axios({
                             method: 'post',
                             url: 'http://localhost:5000/deleteShoppingCart',
                             data: {
                                 CID: product.CID,
-                            }})
+                            }
+                        })
                             .then((response) => {
                                 this.onCreate();
                             })
                             .catch((error) => console.log(error))
-                    } 
-                    else
-                    {
+                    }
+                    else {
                         product.Quantity = 1;
                     }
-                } 
+                }
                 this.totalPriceKey++;
             },
             OnProductQuantityChanged(product) {

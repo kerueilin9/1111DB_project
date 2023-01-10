@@ -181,7 +181,6 @@
                     else {
                         alert('登入成功')
                         this.accountStatus = response.data.UID;
-                        console.log('status ' + this.accountStatus)
                         window.open("index.html", "_self")
                     }
 
@@ -219,7 +218,6 @@
                             element.realPrice = element.Price * element.Discount;
                         });
                         this.productsKey++
-                        console.log(this.products)
                     })
                     .catch((error) => console.log(error))
                 axios.get('http://localhost:5000/UID')
