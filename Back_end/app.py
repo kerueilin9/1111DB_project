@@ -6,6 +6,7 @@ import pymysql
 DEBUG = True
 UID = 0
 PID = 0
+OID = 0
 # instantiate the app
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -324,7 +325,7 @@ def shoppingCartAddOrder():
 def getOrderByUser():
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
-    cursor.execute("SELECT product.Image AS Image, productName AS `Name`, Other_request AS Other, Price, `order`.Quantity AS Quantity FROM `order` INNER JOIN product USING(PID) WHERE Member_ID = %s;", UID)
+    cursor.execute("SELECT OID, Member_ID AS UID, product.Image AS Image, productName AS `Name`, Other_request AS Other, Price, `order`.Quantity AS Quantity FROM `order` INNER JOIN product USING(PID) WHERE Member_ID = %s;", UID)
     order = cursor.fetchall()
     return jsonify({
             'status' : 'success',
@@ -335,7 +336,19 @@ def getOrderByUser():
 def getAllOrder():
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
-    cursor.execute("SELECT Member_ID AS UID, product.Image AS Image, productName AS `Name`, Other_request AS Other, Price, `order`.Quantity AS Quantity FROM `order` INNER JOIN product USING(PID);")
+    cursor.execute("SELECT OID, Member_ID AS UID, product.Image AS Image, productName AS `Name`, Other_request AS Other, Price, `order`.Quantity AS Quantity FROM `order` INNER JOIN product USING(PID);")
+    order = cursor.fetchall()
+    return jsonify({
+            'status' : 'success',
+            'values' : order
+        })
+
+@app.route('/getOrderStatusByOID', methods=['GET'])
+def getOrderByOID():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+    global OID
+    cursor.execute("SELECT OID, Member_ID AS UID, `Status` FROM `order` WHERE OID = %s;", OID)
     order = cursor.fetchall()
     return jsonify({
             'status' : 'success',
@@ -356,12 +369,31 @@ def Update(pid):
 # 取得UID
 @app.route('/UID', methods=['GET'])
 def getUID():
+    global UID
     print('GET UID = ' + str(UID))
     return jsonify({
         'status': 'success',
         'UID': UID
     })
 
+@app.route('/OID', methods=['POST'])
+def setOID():
+    data = request.get_json()
+    global OID
+    OID = data['OID']
+    print('OID is' + str(OID))
+    return jsonify({
+        'status': 'success'
+    })
+@app.route('/getOID', methods=['POST'])
+def getOID():
+    data = request.get_json()
+    global OID
+    OID = data['OID']
+    print('OID is' + str(OID))
+    return jsonify({
+        'status': 'success'
+    })
 #______________登出______________
 
 # 登出

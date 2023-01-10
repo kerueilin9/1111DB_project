@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,39 +19,44 @@
 </head>
 
 <body>
-    <header id="homeHeader" class="jumbotron">
-        <div class="container">
-            <div class="iconHome">
-                <img src="image.png" alt="icon">
-            </div>
-            <span class="userImform"><a href="#" @click="onUserProfile()">User name</a></span>
-        </div>
-    </header>
+    <div id="app">
 
-    <!-- section -->
-    <section class="py-4" id="app">
-        <div class="container">
-            <div class="text-center mb-4">
-                <h2 class="registerHeader">專案進度</h2>
-                <hr>
-                <form class="registerForm">
-                    <div class="inputDiv">
-                        <div class="inputBoxLabel">目前進度
-                            <p class="necessaryInputLabel"></p>
-                        </div>
-                        <input class="inputBox" type="text" readonly="readonly" v-model="P1" ref="nameInput" autofocus required />
-                    </div>
+
+        <header id="homeHeader" class="jumbotron">
+            <div class="container">
+                <div class="iconHome">
+                    <img src="image.png" alt="icon" @click="toMainPage()">
+                </div>
+                <nav>
+                    <a href="#" @click="onUserProfile()">Welcome {{userProfileLabel}}</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- section -->
+        <section class="py-4">
+            <div class="">
+                <div class="text-center mb-4">
+                    <h2 class="registerHeader">編輯訂單 {{OID}}專案進度</h2>
                     <hr>
-                    <div class="submitDiv">
-                        <button class="cancelButton" type="button" @click="toMainPage()">回到首頁</button>
-                    </div>
-                </form>
+                    <form class="registerForm">
+                        <div class="inputDiv">
+                            <div class="inputBoxLabel">目前進度
+                                <p class="necessaryInputLabel"></p>
+                            </div>
+                            <input class="inputBox" type="text" v-model="status" ref="nameInput" autofocus required />
+                        </div>
+                        <hr>
+                        <div class="submitDiv">
+                            <button class="cancelButton" type="button" @click="toUserOrders()">回到訂單</button>
+                        </div>
+                    </form>
 
+                </div>
             </div>
-        </div>
-    </section>
-    <!-- section end -->
-
+        </section>
+        <!-- section end -->
+    </div>
 </body>
 <script>
 
@@ -74,15 +80,27 @@
     Vue.createApp({
         data: function () {
             return {
-                P1: ''
-                };
+                OID: '',
+                status: ''
+            };
         },
         methods: {
-            toMainPage() {
-                window.open("index.html", "_self")
+            toUserOrders() {
+                window.open("userOrders.html", "_self")
+            },
+            onUserProfile() {
+                window.open("user.html", "_self")
+            },
+            onCreate() {
+                axios.get('http://localhost:5000/getOrderStatusByOID')
+                    .then((response) => {
+                        this.status = response.data.values[0].Status
+                    })
+                    .catch((error) => console.log(error))
             }
         },
         mounted: function () {
+            this.onCreate()
 
         },
     }).mount('#app');
