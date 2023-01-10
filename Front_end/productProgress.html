@@ -96,6 +96,23 @@
             onUserProfile() {
                 window.open("user.html", "_self")
             },
+            editStatus() {
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:5000/modifyOrderStatus',
+                    data: {
+                        Status: this.status
+                    }
+                }).then((response) => {
+                    var editResult = response.data.values
+                    if (editResult != '修改成功')
+                        alert(response.data.values)
+                    else {
+                        alert('修改成功')
+                        location.reload()
+                    }
+                })
+            },
             onCreate() {
                 axios.get('http://localhost:5000/user')
                     .then((response) => {

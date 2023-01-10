@@ -355,6 +355,28 @@ def getOrderByOID():
             'values' : order
         })
 
+@app.route('/modifyOrderStatus', methods=['POST'])
+def modifyOrderStatus():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+    try:
+        data = request.get_json()
+        global OID
+        val = (data['Status'], OID)
+        cursor.execute("UPDATE `order` SET `Status`= %s WHERE OID = %s", val)
+        conn.commit()
+        Address = cursor.fetchall()
+        return jsonify({
+            'status': 'success',
+            'values': '修改成功'
+        })
+    # except Exception as e:
+    #     print(e)
+    finally:
+        cursor.close() 
+        conn.close()
+
 #______________換頁傳遞資訊______________
 # PID POST
 @app.route('/PID/<int:pid>', methods=['POST'])
