@@ -14,7 +14,7 @@ app.config.from_object(__name__)
 mysql = MySQL()
     
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'admin'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'admin1234'
 app.config['MYSQL_DATABASE_DB'] = 'shopDB'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
